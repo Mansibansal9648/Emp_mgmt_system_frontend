@@ -1,0 +1,49 @@
+.main_contain{
+    height: 100vh;
+    background-image: linear-gradient(60deg, #FEAF00, #F8D442);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container{
+    height: 550px;
+    width: 475px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 40px 20px;
+}
+.input_label{
+    color: #6C6C6C;
+}
+.signin{
+    background-color: #FEAF00;
+    color: white;
+    padding: 10px 185px !important;
+    border: none;
+    border-radius: 10px;
+    transition: 1000ms;
+}
+.signin:hover{
+background-image: linear-gradient(90deg,#FEAF00, #f8cb69);
+transition: 1000ms;
+}
+
+.anchor{
+    color: #FEAF00;
+}
+.title{
+        font-weight: 700;
+}
+.pre_title{
+    display: inline-block;
+    height: 50px !important;
+    width: 8px;
+    background-color: #FEAF00;
+}
+.title_box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
