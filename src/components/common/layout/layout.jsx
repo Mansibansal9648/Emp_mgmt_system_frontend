@@ -64,26 +64,25 @@ function Layout(props) {
           {/* Navbar */}
           <div className="col-md-10 p-0 border-0">
             <div className="container-fluid navbar d-flex justify-content-space-between ">
-              
-                <button className="rounded-circle">
-                  <MenuOpenIcon />
-                </button>
-                <div className=" searchbox position-relative d-flex align-items-center">
-                  <SearchIcon className="mr-2" />
-                  <input
-                    type="text"
-                    placeholder="Search here..."
-                    className="input "
-                  /><NotificationsNoneIcon className="bell-icon" />
-                </div>
-                
+              <button className="rounded-circle">
+                <MenuOpenIcon />
+              </button>
+              <div className=" searchbox position-relative d-flex align-items-center">
+                <SearchIcon className="mr-2" />
+                <input
+                  type="text"
+                  placeholder="Search here..."
+                  className="input "
+                />
+                <NotificationsNoneIcon className="bell-icon" />
               </div>
             </div>
+            {props.children}
           </div>
-
-          {props.children}
         </div>
-      
+
+       
+      </div>
     </>
   );
 }
