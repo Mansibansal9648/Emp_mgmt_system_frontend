@@ -15,7 +15,7 @@ function Layout(props) {
       <div className="container-fluid">
         <div className="row">
           {/* Sidebar */}
-          <div className="col-md-2 sidebar ">
+          <div className="col-md-2 sidebar border border-1 ">
             <div class="sidebar-profile  text-center ">
               <div className="mt-3 ">
                 <span className="logo mx-4 ">DevSages CRM</span>
@@ -29,9 +29,9 @@ function Layout(props) {
             </div>
             <div className="container d-flex justify-content-center align-items-center mt-5">
               <ul className="list-unstyled">
-                <li className="mx-2 mt-3 w-100 sidebar-menu p-2 border rounded dashboard-color">
-                  <Link to="/dashboard" className="nav-link ">
-                    <DashboardIcon className="mx-2" />
+                <li className="mx-2 mt-3 w-100 sidebar-menu p-2 border rounded ">
+                  <Link to="/dashboard" className="nav-link">
+                    <DashboardIcon className="mx-2"/>
                     Dashboard
                   </Link>
                 </li>
@@ -63,8 +63,8 @@ function Layout(props) {
             </div>
           </div>
           {/* Navbar */}
-          <div className="col-md-10 p-0 border-0">
-            <div className="container-fluid navbar d-flex justify-content-space-between ">
+          <div className="col-md-10 p-0">
+            <div className="container-fluid navbar d-flex justify-content-space-between  border border-1 ">
               <button className="rounded-circle">
                 <MenuOpenIcon />
               </button>
