@@ -2,7 +2,7 @@
 
 /* <----Sidebar CSS-----> */
 .sidebar {
-  background-color: white;
+  background-color: #f2eae1;
   margin: 0;
   padding: 0;
   height: 100vh;
@@ -20,7 +20,10 @@
   height: 100px;
   margin: 15px auto;
 }
-.sidebar-menu {
+.dashboard-color {
+  background-color: #feaf00;
+}
+.sidebar-menu:hover {
   background-color: #feaf00;
   outline: none;
   border: 0px;

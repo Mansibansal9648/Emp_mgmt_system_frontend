@@ -1,0 +1,50 @@
+/* ADMIN DASHBOARD CSS -- Start */
+
+.admin-portal{
+    width: 350px;
+    height: 200px;
+    background-color: blueviolet;
+    padding: 25px;
+    border-radius: 6px;
+    background-color: #f0f9ff;
+}
+
+.admin-icon{
+    width: 60px;
+    height: 60px;
+    color: aqua;
+   
+}
+
+/* .admin-portal {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  } */
+  
+  /* .admin-portal > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  } */
+  
+  /* .container {
+    display: flex;
+    justify-content: space-between;
+  } */
+  
+  /* .row {
+    display: flex;
+    justify-content: space-between;
+  } */
+  
+  /* .col-md-4 {
+    flex: 0 0 auto;
+    width: 33.33%;
+  }
+   */
+
+/* ADMIN DASHBOARD CSS -- End */

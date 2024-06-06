@@ -8,6 +8,7 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import "../common.css";
 
+
 function Layout(props) {
   return (
     <>
@@ -28,14 +29,14 @@ function Layout(props) {
             </div>
             <div className="container d-flex justify-content-center align-items-center mt-5">
               <ul className="list-unstyled">
-                <li className="mx-2 mt-3 w-100 sidebar-menu p-2 border rounded">
-                  <Link to="/dashboard">
+                <li className="mx-2 mt-3 w-100 sidebar-menu p-2 border rounded dashboard-color">
+                  <Link to="/dashboard" className="nav-link ">
                     <DashboardIcon className="mx-2" />
                     Dashboard
                   </Link>
                 </li>
                 <li className="mx-2 mt-3 w-100 sidebar-menu p-2 border rounded">
-                  <Link to="/employees">
+                  <Link to="/employees" className="nav-link">
                     <BadgeIcon className="mx-2" />
                     Employees
                   </Link>
