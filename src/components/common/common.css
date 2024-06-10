@@ -23,7 +23,8 @@
 .dashboard-color {
   background-color: #feaf00;
 }
-.sidebar-menu:hover {
+
+.sidebar-menu.active {
   background-color: #feaf00;
   outline: none;
   border: 0px;
@@ -38,6 +39,7 @@
   top: 0;
   left: 0;
 }
+
 
 .navbar .rounded-circle {
   border-radius: 50%;

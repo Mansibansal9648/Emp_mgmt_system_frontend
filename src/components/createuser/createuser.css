@@ -1,13 +1,15 @@
 .wrap{
-  background-color: #888888;
-  padding: 50px 100px;
-  
+  background-color: #f8f8f8;
+  padding: 50px 100px ;
+  overflow-y: auto;
+  height: 100vh;
 }
 
 .createUser {
   padding: 30px 120px;
   background: white;
   border-radius: 5px;
+ 
 }
 .form {
   margin: auto;
@@ -18,15 +20,20 @@ label {
 }
 input {
   border-color: 1px solid #ffffff;
+  
 }
 
 .submit_btn {
   background-color: #feaf00;
-  padding: 10px 50px !important;
+  padding: 10px 50px;
   border: none;
   border-radius: 10px;
 }
 
 .close_btn{
   font-size: 30px;
+}
+.form_error{
+  color: red;
+
 }

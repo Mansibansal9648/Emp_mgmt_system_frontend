@@ -103,7 +103,7 @@ function CreateUser() {
         <div className="form-floating mb-3">
           <input
             type="text"
-            className="form-control"
+            className={`form-control ${values.name === '' && touched.name ? 'border border-danger ' : ''}`}
             name="name"
             id="name"
             placeholder="Enter Full Name"
@@ -112,13 +112,13 @@ function CreateUser() {
             onBlur={handleBlur}
           />
           <label htmlFor="name">Full Name</label>
-          {errors.name && touched.name ? <p>{errors.name}</p> : null}
+          {errors.name && touched.name ? <p className="form_error">{errors.name}</p> : null}
         </div>
 
         <div className="form-floating mb-3">
           <input
             type="email"
-            className="form-control"
+            className={`form-control ${values.email === '' && touched.email ? 'border border-danger ' : ''}`}
             name="email"
             id="email"
             placeholder="Enter Email"
@@ -127,28 +127,28 @@ function CreateUser() {
             onBlur={handleBlur}
           />
           <label htmlFor="email">Email</label>
-          {errors.email && touched.email ? <p>{errors.email}</p> : null}
+          {errors.email && touched.email ? <p className="form_error">{errors.email}</p> : null}
         </div>
 
         <div className="form-floating mb-3">
           <input
-            type="number"
-            className="form-control"
+            type="tel"
+            className={`form-control ${values.phone === '' && touched.phone ? 'border border-danger ' : ''}`}
             name="phone"
             id="phone"
-            placeholder="Enter Phone"
+            placeholder="Enter Phone Number"
             value={values.phone}
             onChange={handleChange}
             onBlur={handleBlur}
           />
           <label htmlFor="phone">Phone</label>
-          {errors.phone && touched.phone ? <p>{errors.phone}</p> : null}
+          {errors.phone && touched.phone ? <p className="form_error">{errors.phone}</p> : null}
         </div>
 
         <div className="form-floating mb-3">
           <input
             type="text"
-            className="form-control"
+            className={`form-control ${values.department === '' && touched.department ? 'border border-danger ' : ''}`}
             name="department"
             id="department"
             placeholder="Enter Department"
@@ -158,14 +158,14 @@ function CreateUser() {
           />
           <label htmlFor="department">Department</label>
           {errors.department && touched.department ? (
-            <p>{errors.department}</p>
+            <p className="form_error">{errors.department}</p>
           ) : null}
         </div>
 
         <div className="form-floating mb-3">
           <input
             type="text"
-            className="form-control"
+            className={`form-control ${values.designation === '' && touched.designation ? 'border border-danger ' : ''}`}
             name="designation"
             id="designation"
             placeholder="Enter Designation"
@@ -175,14 +175,14 @@ function CreateUser() {
           />
           <label htmlFor="designation">Designation</label>
           {errors.designation && touched.designation ? (
-            <p>{errors.designation}</p>
+            <p className="form_error">{errors.designation}</p>
           ) : null}
         </div>
 
         <div className="form-floating mb-3">
           <input
-            className="form-control"
-            type="number"
+            className={`form-control ${values.salary === '' && touched.salary ? 'border border-danger ' : ''}`}
+            type=""
             id="salary"
             name="salary"
             value={values.salary}
@@ -191,7 +191,7 @@ function CreateUser() {
             placeholder="Enter salary"
           />
           <label htmlFor="salary">Salary</label>
-          {errors.salary && touched.salary ? <p>{errors.salary}</p> : null}
+          {errors.salary && touched.salary ? <p className="form_error">{errors.salary}</p> : null}
         </div>
         <div className="form-floating mb-4">
           <input
@@ -205,9 +205,11 @@ function CreateUser() {
             onBlur={handleBlur}
           />
           <label htmlFor="date">Date of Joining</label>
-          {errors.date && touched.date ? <p>{errors.date}</p> : null}
+          {errors.date && touched.date ? <p className="form_error">{errors.date}</p> : null}
         </div>
-        <div class="text-center pb-4">
+       
+         
+        <div className="form-floating mb-4 text-center">
           <button
             className="submit_btn"
             type="button"
