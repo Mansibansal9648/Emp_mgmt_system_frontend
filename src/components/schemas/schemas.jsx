@@ -6,10 +6,12 @@ export const Schemas = Yup.object({
     .min(3, "Name must be at least 3 characters")
     .max(25, "Name can't exceed 25 characters")
     .required("Please Enter Your Name"),
+    .required("Please Enter Your Name"),
 
   email: Yup.string()
     .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Please enter a valid email address")
     // .email("Please enter a valid email address")
+    .required("Please Enter Your Email"),
     .required("Please Enter Your Email"),
 
   phone: Yup.string()
@@ -29,6 +31,7 @@ export const Schemas = Yup.object({
     .matches(/^[a-zA-Z]+$/, "Department can only contain alphabets")
     .min(2, "Department must be at least 2 characters")
     .max(25, "Department can't exceed 25 characters")
+    .required("Please Enter Your Department"),
     .required("Please Enter Your Department"),
 
   salary: Yup.string()
