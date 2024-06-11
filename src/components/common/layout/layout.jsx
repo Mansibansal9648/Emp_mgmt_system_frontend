@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import BadgeIcon from "@mui/icons-material/Badge";
 import AnnouncementIcon from "@mui/icons-material/Announcement";
@@ -20,7 +19,6 @@ function Layout(props) {
     <>
       <div className="container-fluid">
         <div className="row">
-          {/* Sidebar */}
           <div className="col-md-2 sidebar border border-1 ">
             <div className="inner_container">
             <div class="sidebar-profile  text-center ">
@@ -95,7 +93,7 @@ function Layout(props) {
             </div>
             </div>
           </div>
-          {/* Navbar */}
+      
           <div className="col-md-10 p-0 rest_part">
             <div className="container-fluid navbar d-flex justify-content-space-between  border border-1 ">
               <button className="rounded-circle">
@@ -117,6 +115,8 @@ function Layout(props) {
 
        
       </div>
+
+      
     </>
   );
 }
