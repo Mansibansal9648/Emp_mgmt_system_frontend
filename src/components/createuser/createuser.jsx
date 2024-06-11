@@ -99,7 +99,7 @@ function CreateUser() {
         </button>
       </div>
 
-      <div class="modal-body">
+      <div className="modal-body">
         <div className="form-floating mb-3">
           <input
             type="text"
@@ -110,9 +110,12 @@ function CreateUser() {
             value={values.name}
             onChange={handleChange}
             onBlur={handleBlur}
+            style={{
+              borderColor: errors.name && touched.name ? 'red' : touched.name ? 'green' : '',
+            }}
           />
           <label htmlFor="name">Full Name</label>
-          {errors.name && touched.name ? <p>{errors.name}</p> : null}
+          {errors.name && touched.name ? <p className="form_error">{errors.name}</p> : null}
         </div>
 
         <div className="form-floating mb-3">
@@ -125,9 +128,12 @@ function CreateUser() {
             value={values.email}
             onChange={handleChange}
             onBlur={handleBlur}
+            style={{
+              borderColor: errors.email && touched.email ? 'red' : touched.email ? 'green' : '',
+            }}
           />
           <label htmlFor="email">Email</label>
-          {errors.email && touched.email ? <p>{errors.email}</p> : null}
+          {errors.email && touched.email ? <p className="form_error">{errors.email}</p> : null}
         </div>
 
         <div className="form-floating mb-3">
@@ -140,9 +146,12 @@ function CreateUser() {
             value={values.phone}
             onChange={handleChange}
             onBlur={handleBlur}
+            style={{
+              borderColor: errors.phone && touched.phone ? 'red' : touched.phone ? 'green' : '',
+            }}
           />
           <label htmlFor="phone">Phone</label>
-          {errors.phone && touched.phone ? <p>{errors.phone}</p> : null}
+          {errors.phone && touched.phone ? <p className="form_error">{errors.phone}</p> : null}
         </div>
 
         <div className="form-floating mb-3">
@@ -155,10 +164,13 @@ function CreateUser() {
             value={values.department}
             onChange={handleChange}
             onBlur={handleBlur}
+            style={{
+              borderColor: errors.department && touched.department ? 'red' : touched.department ? 'green' : '',
+            }}
           />
           <label htmlFor="department">Department</label>
           {errors.department && touched.department ? (
-            <p>{errors.department}</p>
+            <p className="form_error">{errors.department}</p>
           ) : null}
         </div>
 
@@ -172,10 +184,13 @@ function CreateUser() {
             value={values.designation}
             onChange={handleChange}
             onBlur={handleBlur}
+            style={{
+              borderColor: errors.designation && touched.designation ? 'red' : touched.designation ? 'green' : '',
+            }}
           />
           <label htmlFor="designation">Designation</label>
           {errors.designation && touched.designation ? (
-            <p>{errors.designation}</p>
+            <p className="form_error">{errors.designation}</p>
           ) : null}
         </div>
 
@@ -189,9 +204,12 @@ function CreateUser() {
             onChange={handleChange}
             onBlur={handleBlur}
             placeholder="Enter salary"
+            style={{
+              borderColor: errors.salary && touched.salary ? 'red' : touched.salary ? 'green' : '',
+            }}
           />
           <label htmlFor="salary">Salary</label>
-          {errors.salary && touched.salary ? <p>{errors.salary}</p> : null}
+          {errors.salary && touched.salary ? <p className="form_error">{errors.salary}</p> : null}
         </div>
         <div className="form-floating mb-4">
           <input
@@ -203,9 +221,12 @@ function CreateUser() {
             value={values.date}
             onChange={handleChange}
             onBlur={handleBlur}
+            style={{
+              borderColor: errors.date && touched.date ? 'red' : touched.date ? 'green' : '',
+            }}
           />
           <label htmlFor="date">Date of Joining</label>
-          {errors.date && touched.date ? <p>{errors.date}</p> : null}
+          {errors.date && touched.date ? <p className="form_error">{errors.date}</p> : null}
         </div>
         <div class="text-center pb-4">
           <button

@@ -6,6 +6,16 @@
   margin: 0;
   padding: 0;
   height: 100vh;
+  position: relative;
+  overflow:auto
+}
+.inner_container{
+  background-color: #f2eae1;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
 }
 .sidebar .logo {
   font-weight: 800;
@@ -23,7 +33,7 @@
 .dashboard-color {
   background-color: #feaf00;
 }
-.sidebar-menu:hover {
+.sidebar-menu.active {
   background-color: #feaf00;
   outline: none;
   border: 0px;
@@ -64,4 +74,9 @@
   height: 32px;
   margin: 12px;
 }
+.form_error{
+  color: red;
+
+}
+
 /* layout css end*/
