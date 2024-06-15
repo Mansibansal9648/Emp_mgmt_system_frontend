@@ -7,9 +7,9 @@
   padding: 0;
   height: 100vh;
   position: relative;
-  overflow:auto
+  overflow: auto;
 }
-.inner_container{
+.inner_container {
   background-color: #f2eae1;
   height: 100vh;
   position: fixed;
@@ -43,10 +43,10 @@
   background-color: #fff;
   height: 70px;
   padding: 10px 50px;
-  /* top: 0;
-  right: 0; */
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
-
 
 .navbar .rounded-circle {
   border-radius: 50%;
@@ -73,9 +73,8 @@
   height: 32px;
   margin: 12px;
 }
-.form_error{
+.form_error {
   color: red;
-
 }
 
 /* layout css end*/

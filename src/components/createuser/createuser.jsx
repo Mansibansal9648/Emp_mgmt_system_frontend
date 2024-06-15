@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import './createuser.css';
+import "./createuser.css";
 import {
   getEmployeeData,
   DeleteData,
@@ -10,11 +10,18 @@ import {
 import { useFormik } from "formik";
 import { Schemas } from "../schemas/schemas";
 import { toast } from "react-toastify";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/fontawesome-free-solid";
 import "react-toastify/dist/ReactToastify.css";
 
 function CreateUser() {
   const [form_data, setForm_data] = useState(initialState());
   const [table_data, setTable_data] = useState([]);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   useEffect(() => {
     getData();
@@ -24,6 +31,7 @@ function CreateUser() {
     return {
       name: "",
       email: "",
+      password: "",
       phone: "",
       department: "",
       designation: "",
@@ -91,157 +99,268 @@ function CreateUser() {
   return (
     <div className="wrap">
       <div className="createUser">
-      <form className="form ">
-      <div className="modal-header mb-3 d-flex justify-content-between">
-        <h4 className="modal-title" id="exampleModalLabel">Enter Details</h4>
-        <button type="button" className="btn close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true" className="close_btn">&times;</span>
-        </button>
+        <form className="form ">
+          <div className="modal-header mb-3 d-flex justify-content-between">
+            <h4 className="modal-title" id="exampleModalLabel">
+              Enter Details
+            </h4>
+            <button
+              type="button"
+              className="btn close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true" className="close_btn">
+                &times;
+              </span>
+            </button>
+          </div>
+
+          <div className="modal-body">
+            <div className="form-floating mb-3">
+              <input
+                type="text"
+                className={`form-control ${
+                  values.name === "" && touched.name
+                    ? "border border-danger "
+                    : ""
+                }`}
+                name="name"
+                id="name"
+                placeholder="Enter Full Name"
+                value={values.name}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                style={{
+                  borderColor:
+                    errors.name && touched.name
+                      ? "red"
+                      : touched.name
+                      ? "green"
+                      : "",
+                }}
+              />
+              <label htmlFor="name">Full Name</label>
+              {errors.name && touched.name ? (
+                <p className="form_error">{errors.name}</p>
+              ) : null}
+            </div>
+
+            <div className="form-floating mb-3">
+              <input
+                type="email"
+                className={`form-control ${
+                  values.email === "" && touched.email
+                    ? "border border-danger "
+                    : ""
+                }`}
+                name="email"
+                id="email"
+                placeholder="Enter Email"
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                style={{
+                  borderColor:
+                    errors.email && touched.email
+                      ? "red"
+                      : touched.email
+                      ? "green"
+                      : "",
+                }}
+              />
+              <label htmlFor="email">Email</label>
+              {errors.email && touched.email ? (
+                <p className="form_error">{errors.email}</p>
+              ) : null}
+            </div>
+
+            <div className="form-floating mb-3">
+              <input
+                 type={showPassword ? "text" : "password"}
+                className={`form-control ${
+                  values.password === "" && touched.password
+                    ? "border border-danger "
+                    : ""
+                }`}
+                name="password"
+                id="password"
+                placeholder="Enter password"
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                style={{
+                  borderColor:
+                    errors.password && touched.password
+                      ? "red"
+                      : touched.password
+                      ? "green"
+                      : "",
+                }}
+              />
+              <FontAwesomeIcon
+                icon={showPassword ? faEye : faEyeSlash}
+                className="eye-position"
+                onClick={togglePasswordVisibility}
+              />
+              <label htmlFor="email">Password</label>
+              {errors.password && touched.password ? (
+                <p className="form_error">{errors.password}</p>
+              ) : null}
+            </div>
+
+            <div className="form-floating mb-3">
+              <input
+                type="tel"
+                className={`form-control ${
+                  values.phone === "" && touched.phone
+                    ? "border border-danger "
+                    : ""
+                }`}
+                name="phone"
+                id="phone"
+                placeholder="Enter Phone Number"
+                value={values.phone}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                style={{
+                  borderColor:
+                    errors.phone && touched.phone
+                      ? "red"
+                      : touched.phone
+                      ? "green"
+                      : "",
+                }}
+              />
+              <label htmlFor="phone">Phone</label>
+              {errors.phone && touched.phone ? (
+                <p className="form_error">{errors.phone}</p>
+              ) : null}
+            </div>
+
+            <div className="form-floating mb-3">
+              <input
+                type="text"
+                className={`form-control ${
+                  values.department === "" && touched.department
+                    ? "border border-danger "
+                    : ""
+                }`}
+                name="department"
+                id="department"
+                placeholder="Enter Department"
+                value={values.department}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                style={{
+                  borderColor:
+                    errors.department && touched.department
+                      ? "red"
+                      : touched.department
+                      ? "green"
+                      : "",
+                }}
+              />
+              <label htmlFor="department">Department</label>
+              {errors.department && touched.department ? (
+                <p className="form_error">{errors.department}</p>
+              ) : null}
+            </div>
+
+            <div className="form-floating mb-3">
+              <input
+                type="text"
+                className={`form-control ${
+                  values.designation === "" && touched.designation
+                    ? "border border-danger "
+                    : ""
+                }`}
+                name="designation"
+                id="designation"
+                placeholder="Enter Designation"
+                value={values.designation}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                style={{
+                  borderColor:
+                    errors.designation && touched.designation
+                      ? "red"
+                      : touched.designation
+                      ? "green"
+                      : "",
+                }}
+              />
+              <label htmlFor="designation">Designation</label>
+              {errors.designation && touched.designation ? (
+                <p className="form_error">{errors.designation}</p>
+              ) : null}
+            </div>
+
+            <div className="form-floating mb-3">
+              <input
+                className={`form-control ${
+                  values.salary === "" && touched.salary
+                    ? "border border-danger "
+                    : ""
+                }`}
+                type=""
+                id="salary"
+                name="salary"
+                value={values.salary}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                placeholder="Enter salary"
+                style={{
+                  borderColor:
+                    errors.salary && touched.salary
+                      ? "red"
+                      : touched.salary
+                      ? "green"
+                      : "",
+                }}
+              />
+              <label htmlFor="salary">Salary</label>
+              {errors.salary && touched.salary ? (
+                <p className="form_error">{errors.salary}</p>
+              ) : null}
+            </div>
+            <div className="form-floating mb-4">
+              <input
+                type="date"
+                className="form-control"
+                name="date"
+                id="date"
+                placeholder="Enter DOJ"
+                value={values.date}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                style={{
+                  borderColor:
+                    errors.date && touched.date
+                      ? "red"
+                      : touched.date
+                      ? "green"
+                      : "",
+                }}
+              />
+              <label htmlFor="date">Date of Joining</label>
+              {errors.date && touched.date ? (
+                <p className="form_error">{errors.date}</p>
+              ) : null}
+            </div>
+
+            <div className="form-floating mb-4 text-center">
+              <button
+                className="submit_btn"
+                type="button"
+                onClick={handleSubmit}
+              >
+                Submit Data
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
-
-      <div className="modal-body">
-        <div className="form-floating mb-3">
-          <input
-            type="text"
-            className={`form-control ${values.name === '' && touched.name ? 'border border-danger ' : ''}`}
-            name="name"
-            id="name"
-            placeholder="Enter Full Name"
-            value={values.name}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            style={{
-              borderColor: errors.name && touched.name ? 'red' : touched.name ? 'green' : '',
-            }}
-          />
-          <label htmlFor="name">Full Name</label>
-          {errors.name && touched.name ? <p className="form_error">{errors.name}</p> : null}
-        </div>
-
-        <div className="form-floating mb-3">
-          <input
-            type="email"
-            className={`form-control ${values.email === '' && touched.email ? 'border border-danger ' : ''}`}
-            name="email"
-            id="email"
-            placeholder="Enter Email"
-            value={values.email}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            style={{
-              borderColor: errors.email && touched.email ? 'red' : touched.email ? 'green' : '',
-            }}
-          />
-          <label htmlFor="email">Email</label>
-          {errors.email && touched.email ? <p className="form_error">{errors.email}</p> : null}
-        </div>
-
-        <div className="form-floating mb-3">
-          <input
-            type="tel"
-            className={`form-control ${values.phone === '' && touched.phone ? 'border border-danger ' : ''}`}
-            name="phone"
-            id="phone"
-            placeholder="Enter Phone Number"
-            value={values.phone}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            style={{
-              borderColor: errors.phone && touched.phone ? 'red' : touched.phone ? 'green' : '',
-            }}
-          />
-          <label htmlFor="phone">Phone</label>
-          {errors.phone && touched.phone ? <p className="form_error">{errors.phone}</p> : null}
-        </div>
-
-        <div className="form-floating mb-3">
-          <input
-            type="text"
-            className={`form-control ${values.department === '' && touched.department ? 'border border-danger ' : ''}`}
-            name="department"
-            id="department"
-            placeholder="Enter Department"
-            value={values.department}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            style={{
-              borderColor: errors.department && touched.department ? 'red' : touched.department ? 'green' : '',
-            }}
-          />
-          <label htmlFor="department">Department</label>
-          {errors.department && touched.department ? (
-            <p className="form_error">{errors.department}</p>
-          ) : null}
-        </div>
-
-        <div className="form-floating mb-3">
-          <input
-            type="text"
-            className={`form-control ${values.designation === '' && touched.designation ? 'border border-danger ' : ''}`}
-            name="designation"
-            id="designation"
-            placeholder="Enter Designation"
-            value={values.designation}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            style={{
-              borderColor: errors.designation && touched.designation ? 'red' : touched.designation ? 'green' : '',
-            }}
-          />
-          <label htmlFor="designation">Designation</label>
-          {errors.designation && touched.designation ? (
-            <p className="form_error">{errors.designation}</p>
-          ) : null}
-        </div>
-
-        <div className="form-floating mb-3">
-          <input
-            className={`form-control ${values.salary === '' && touched.salary ? 'border border-danger ' : ''}`}
-            type=""
-            id="salary"
-            name="salary"
-            value={values.salary}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            placeholder="Enter salary"
-            style={{
-              borderColor: errors.salary && touched.salary ? 'red' : touched.salary ? 'green' : '',
-            }}
-          />
-          <label htmlFor="salary">Salary</label>
-          {errors.salary && touched.salary ? <p className="form_error">{errors.salary}</p> : null}
-        </div>
-        <div className="form-floating mb-4">
-          <input
-            type="date"
-            className="form-control"
-            name="date"
-            id="date"
-            placeholder="Enter DOJ"
-            value={values.date}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            style={{
-              borderColor: errors.date && touched.date ? 'red' : touched.date ? 'green' : '',
-            }}
-          />
-          <label htmlFor="date">Date of Joining</label>
-          {errors.date && touched.date ? <p className="form_error">{errors.date}</p> : null}
-        </div>
-       
-         
-        <div className="form-floating mb-4 text-center">
-          <button
-            className="submit_btn"
-            type="button"
-            onClick={handleSubmit}
-          >
-            Submit Data
-          </button>
-        </div>
-        </div>
-      </form>
-    </div>
     </div>
   );
 }
