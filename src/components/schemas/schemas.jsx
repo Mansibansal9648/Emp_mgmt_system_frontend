@@ -1,7 +1,7 @@
 import * as Yup from "yup";
 
 export const Schemas = Yup.object({
-  name: Yup.string()
+  fullname: Yup.string()
     .matches(/^[a-zA-Z\s]+$/, "Name can only contain alphabets and spaces")
     .min(3, "Name must be at least 3 characters")
     .max(25, "Name can't exceed 25 characters")
