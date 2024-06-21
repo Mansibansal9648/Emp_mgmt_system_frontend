@@ -11,13 +11,6 @@ export const Schemas = Yup.object({
     .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Please enter a valid email address")
     .required("Please Enter Your Email"),
 
-  password: Yup.string()
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,25}$/,
-      "Password must contain at least one lowercase letter, one uppercase letter, one number, one special character, and be at least 6 characters long"
-    )
-    .required("Please enter your password"),
-
   phone: Yup.string()
     .matches(/^[0-9]{10}$/, "Contact number must have exactly 10 digits")
     .required("Contact Number is Required"),

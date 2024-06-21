@@ -1,5 +1,10 @@
 import axios from "axios";
 
+
+
+//-------------------------GetData---------------------------------------------
+
+
 // export const getEmployeeData = async () => {
 //   try {
 //     const response = await axios.get("http://localhost:4001/form_data");
@@ -15,6 +20,10 @@ import axios from "axios";
 //   }
 // };
 
+
+//-------------------------DeleteData--------------------------------------------
+
+
 // export const DeleteData = async (row_id) => {
 //   try {
 //     const response = await axios.delete(
@@ -26,6 +35,10 @@ import axios from "axios";
 //     alert(error.message);
 //   }
 // };
+
+
+//-------------------UpdateData------------------------------
+
 
 // export const UpdateData = async (form_data) => {
 //   try {
@@ -46,39 +59,25 @@ import axios from "axios";
 //   }
 // };
 
+
+
 //-----------------------createData-------------------------------
 
-// export const createData = async (form_data) => {
-//   try {
-//     const response = await axios.post("http://localhost:4001/form_data", {
-//       name: form_data.name,
-//       position: form_data.position,
-//       salary: form_data.salary,
-//       department: form_data.department,
-//       hiredate: form_data.hiredate,
-//     });
-//     return response;
-//   } catch (error) {
-//     console.log("error:", error);
-//   }
-// };
 
 export const createData = async (form_data) => {
   try {
     const response = await axios.post("http://localhost:4001/form_data", {
       fullname: form_data.fullname,
       email: form_data.email,
-      password: form_data.password,
       phone: form_data.phone,
       department: form_data.department,
       designation: form_data.designation,
       salary: form_data.salary,
-      date:form_data.date
+      date: form_data.date,
     });
-    console.log(response)
-   return response;
-   
+    console.log(response);
+    return response;
   } catch (error) {
-    console.log("error:",error);
-}
+    console.log("error:", error);
+  }
 };
