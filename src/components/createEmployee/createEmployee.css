@@ -1,0 +1,40 @@
+.wrap {
+  background-color: #f8f8f8;
+  min-height: 100vh;
+  padding: 50px 100px;
+}
+
+.createUser {
+  padding: 30px 120px;
+  background: white;
+  border-radius: 5px;
+}
+.form {
+  margin: auto;
+}
+
+label {
+  color: #888888;
+}
+input {
+  border-color: 1px solid #ffffff;
+}
+
+.submit_btn {
+  background-color: #feaf00;
+  padding: 10px 50px;
+  border: none;
+  border-radius: 10px;
+}
+
+.close_btn {
+  font-size: 30px;
+}
+.form_error {
+  color: red;
+}
+.eye-position {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
