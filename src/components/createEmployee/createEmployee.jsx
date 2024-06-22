@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./createuser.css";
+import "./createEmployee.css";
 import { createData } from "../api/authUser";
 import { useFormik } from "formik";
 import { Schemas } from "../schemas/schemas";
@@ -7,11 +7,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function CreateUser() {
-  const [showPassword, setShowPassword] = useState(false);
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
 
   const initialState = {
     fullname: "",
