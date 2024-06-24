@@ -1,15 +1,36 @@
 import axios from "axios";
 
+
+// ----------------------GetData-----------------------------------------------
+
+
+export const getEmployeeData = async () => {
+  try {
+    const response = await axios.get("http://localhost:8080/api/all-employees");
+    console.log("data", response.data);
+    return { isSuccess: true, data: response.data.data, errMsg: "" };
+
+  } catch (error) {
+    console.log("error : ", error);
+  }
+};
+
+
+
+// -----------------------------CreateData---------------------------------------
+
+
+
 export const createData = async (form_data) => {
   try {
-    const response = await axios.post("http://localhost:4001/form_data", {
-      fullname: form_data.fullname,
+    const response = await axios.post("http://localhost:8080/api/create-employee", {
+      name: form_data.name,
       email: form_data.email,
       phone: form_data.phone,
-      department: form_data.department,
       designation: form_data.designation,
+      department: form_data.department,
       salary: form_data.salary,
-      date: form_data.date,
+      date_of_joining: form_data.date_of_joining,
     });
     console.log(response);
     return response;
