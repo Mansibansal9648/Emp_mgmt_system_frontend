@@ -6,7 +6,7 @@ import { Schemas } from "../schemas/schemas";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function CreateEmployee() {
+function CreateEmployee(props) {
 
 
   const initialState = {
@@ -21,8 +21,16 @@ function CreateEmployee() {
 
   const CreateEntry = async (form_data) => {
     const res = await createData(form_data);
-    if (res.status === 201) {
-      toast.success("User created successfully");
+
+    if (res && res.status === 201) {
+      toast.success(res.data.resMessage);
+    }
+    else if(res && res.status === 400){
+      // console.log("error")
+      toast.error(res.data.errMessage);
+    }
+    else{
+      toast.error("Something went wrong...")
     }
     return res;
   };
@@ -35,6 +43,8 @@ function CreateEmployee() {
       console.log("Form values on submit:", values);
       await CreateEntry(values);
       action.resetForm();
+      props.getData()
+      props.onClose()
     },
   });
 

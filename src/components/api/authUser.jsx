@@ -8,10 +8,11 @@ export const getEmployeeData = async () => {
   try {
     const response = await axios.get("http://localhost:8080/api/all-employees");
     console.log("data", response.data);
-    return { isSuccess: true, data: response.data.data, errMsg: "" };
+    return response
 
   } catch (error) {
-    console.log("error : ", error);
+    // console.log("error : ", error);
+    return error.response;
   }
 };
 
@@ -35,6 +36,7 @@ export const createData = async (form_data) => {
     console.log(response);
     return response;
   } catch (error) {
-    console.log("error:", error);
+    // console.log("error:", error);
+    return error.response;
   }
 };

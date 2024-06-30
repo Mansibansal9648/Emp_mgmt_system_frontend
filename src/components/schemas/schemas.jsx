@@ -1,7 +1,7 @@
 import * as Yup from "yup";
 
 export const Schemas = Yup.object({
-  fullname: Yup.string()
+  name: Yup.string()
     .matches(/^[a-zA-Z\s]+$/, "Name can only contain alphabets and spaces")
     .min(3, "Name must be at least 3 characters")
     .max(25, "Name can't exceed 25 characters")
@@ -39,7 +39,7 @@ export const Schemas = Yup.object({
     .max(15, "Salary can't exceed 15 digits")
     .required("Please Enter Your Salary"),
 
-  date: Yup.date()
+  date_of_joining: Yup.date()
     .max(new Date(), "Joining date can't be greater than today's date")
     .required("Please Enter Your Date of Joining"),
 });

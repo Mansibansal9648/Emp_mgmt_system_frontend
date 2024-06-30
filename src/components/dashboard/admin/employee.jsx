@@ -9,32 +9,20 @@ import Modal from "./Modal";
 
 function Employees() {
   const [employees, setEmployees] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     getData();
   }, []);
 
   const getData = async () => {
-    setLoading(true);
-    try {
-      const res = await getEmployeeData();
-      if (res.isSuccess) {
-        if (Array.isArray(res.data)) {
-          setEmployees(res.data);
-        } else {
-          throw new Error("Unexpected response format");
-        }
-      } else {
-        toast.error(res.errMsg);
-        setError(res.errMsg);
-      }
-    } catch (err) {
-      toast.error("Failed to fetch employee data");
-      setError(err.message);
+    const res = await getEmployeeData();
+    if (res && res.status == 200) {
+      setEmployees(res.data.data);
+    } else if (res && res.status == 400) {
+      toast.error(res.data.errMessage);
+    } else {
+      toast.error("Something went wrong");
     }
-    setLoading(false);
   };
 
   const handleDelete = (id) => {
@@ -46,7 +34,6 @@ function Employees() {
     // Implement edit functionality here
     toast.info(`Editing employee with id ${id}`);
   };
-
 
   const [showModal, setShowModal] = useState(false);
 
@@ -61,13 +48,13 @@ function Employees() {
   return (
     <div className="container ps-5 pt-4">
       <div className="App">
-      <Modal show={showModal} onClose={closeModal}>
-        <div className='container'>
-        <h2>Modal Title</h2>
-        <p>This is the modal content.</p>
-        </div>
-      </Modal>
-    </div>
+        <Modal show={showModal} onClose={closeModal} getData={getData}>
+          <div className="container">
+            <h2>Modal Title</h2>
+            <p>This is the modal content.</p>
+          </div>
+        </Modal>
+      </div>
       <div className="employee_nav d-flex justify-content-between align-items-center py-3">
         <h4>Employees List</h4>
         <div className="nav_end">
@@ -77,8 +64,10 @@ function Employees() {
           >
             Add Employee
           </Link> */}
-          <button onClick={openModal}
-          className="p-2 employee_btn border rounded-3 text-white">
+          <button
+            onClick={openModal}
+            className="p-2 employee_btn border rounded-3 text-white"
+          >
             Add Employee
           </button>
         </div>
@@ -99,44 +88,38 @@ function Employees() {
         </thead>
 
         <tbody>
-          {loading ? (
-            <p>Loading...</p>
-          ) : error ? (
-            <p>{error}</p>
-          ) : (
-            employees.map((item) => {
-              return (
-                <tr key={item.id}>
-                  <td>{item.name}</td>
-                  <td>{item.email}</td>
-                  <td>{item.phone}</td>
-                  <td>{item.department}</td>
-                  <td>{item.designation}</td>
-                  <td>{item.salary}</td>
-                  <td>{item.date_of_joining}</td>
-                  <td>
-                    <img
-                      src={edit}
-                      alt=""
-                      className="p-2"
-                      onClick={() => {
-                        handleEdit(item);
-                      }}
-                    />
-                    &nbsp;
-                    <img
-                      src={del}
-                      alt=""
-                      className="p-2"
-                      onClick={() => {
-                        handleDelete(item.id);
-                      }}
-                    />
-                  </td>
-                </tr>
-              );
-            })
-          )}
+          {employees.map((item) => {
+            return (
+              <tr key={item.id}>
+                <td>{item.name}</td>
+                <td>{item.email}</td>
+                <td>{item.phone}</td>
+                <td>{item.department}</td>
+                <td>{item.designation}</td>
+                <td>{item.salary}</td>
+                <td>{item.date_of_joining}</td>
+                <td>
+                  <img
+                    src={edit}
+                    alt=""
+                    className="p-2"
+                    onClick={() => {
+                      handleEdit(item);
+                    }}
+                  />
+                  &nbsp;
+                  <img
+                    src={del}
+                    alt=""
+                    className="p-2"
+                    onClick={() => {
+                      handleDelete(item.id);
+                    }}
+                  />
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
