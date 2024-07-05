@@ -6,9 +6,21 @@ import "./employee.css";
 import del from "./images/delete.png";
 import edit from "./images/edit.png";
 import Modal from "./Modal";
+import PaginationComponent from "./pagination";
 
 function Employees() {
   const [employees, setEmployees] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(5); // Adjust as needed
+
+   // Get current items
+
+   const indexOfLastItem = currentPage * itemsPerPage;
+   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+   const currentItems = employees.slice(indexOfFirstItem, indexOfLastItem);
+ 
+   // Change page
+   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   useEffect(() => {
     getData();
@@ -16,9 +28,9 @@ function Employees() {
 
   const getData = async () => {
     const res = await getEmployeeData();
-    if (res && res.status == 200) {
+    if (res && res.status === 200) {
       setEmployees(res.data.data);
-    } else if (res && res.status == 400) {
+    } else if (res && res.status === 400) {
       toast.error(res.data.errMessage);
     } else {
       toast.error("Something went wrong");
@@ -88,7 +100,8 @@ function Employees() {
         </thead>
 
         <tbody>
-          {employees.map((item) => {
+        {currentItems != 0
+         ?currentItems.map((item) => {
             return (
               <tr key={item.id}>
                 <td>{item.name}</td>
@@ -115,11 +128,22 @@ function Employees() {
                     onClick={() => {
                       handleDelete(item.id);
                     }}
+                   
                   />
                 </td>
+            
               </tr>
+              
             );
-          })}
+          })
+          : `Something went Wrong...`}
+              {employees.length !== 0
+         ?<PaginationComponent
+            itemsPerPage={itemsPerPage}
+            totalItems={employees.length}
+            paginate={paginate}
+            currentPage={currentPage}
+          /> : ""}
         </tbody>
       </table>
     </div>
