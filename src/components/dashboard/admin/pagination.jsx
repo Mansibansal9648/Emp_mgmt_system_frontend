@@ -1,9 +1,9 @@
 import React from 'react';
 import { Pagination } from 'react-bootstrap';
 
-const PaginationComponent = ({ itemsPerPage, totalItems, currentPage, paginate }) => {
+const PaginationComponent = ({ totalPages, currentPage, paginate }) => {
   const pageNumbers = [];
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  // const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   if (totalPages <= 5) {
     for (let i = 1; i <= totalPages; i++) {

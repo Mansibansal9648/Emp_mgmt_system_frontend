@@ -9,28 +9,40 @@ import Modal from "./Modal";
 import PaginationComponent from "./pagination";
 
 function Employees() {
+  const paginationState={
+    page: "",
+    totalPages: "",
+    totalItems:"",
+  }
   const [employees, setEmployees] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(5); // Adjust as needed
+   const [currentPage, setCurrentPage] = useState(1);
+   const [itemsPerPage,setItemsPerPage] = useState(5); // Adjust as needed
+  const [pagination, setPagination] = useState(paginationState)
 
    // Get current items
 
-   const indexOfLastItem = currentPage * itemsPerPage;
-   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-   const currentItems = employees.slice(indexOfFirstItem, indexOfLastItem);
+  //  const indexOfLastItem = currentPage * itemsPerPage;
+  //  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  //  const currentItems = employees.slice(indexOfFirstItem, indexOfLastItem);
  
    // Change page
    const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [currentPage]);
 
   const getData = async () => {
-    const res = await getEmployeeData();
-    if (res && res.status === 200) {
+    const res = await getEmployeeData(currentPage,itemsPerPage);
+    if (res && res.data.responseCode === 200) {
       setEmployees(res.data.data);
-    } else if (res && res.status === 400) {
+      setPagination({
+        page: res.data.pagination.page,
+        totalPages: res.data.pagination.totalPages,
+        totalItems:res.data.pagination.totalItems,
+      })
+
+    } else if (res && res.data.responseCode === 400) {
       toast.error(res.data.errMessage);
     } else {
       toast.error("Something went wrong");
@@ -100,8 +112,8 @@ function Employees() {
         </thead>
 
         <tbody>
-        {currentItems != 0
-         ?currentItems.map((item) => {
+        {employees.length != 0
+         ?employees.map((item) => {
             return (
               <tr key={item.id}>
                 <td>{item.name}</td>
@@ -136,13 +148,14 @@ function Employees() {
               
             );
           })
-          : `Something went Wrong...`}
+          : `No record found`}
               {employees.length !== 0
          ?<PaginationComponent
-            itemsPerPage={itemsPerPage}
-            totalItems={employees.length}
+            // itemsPerPage={itemsPerPage}
+            // totalItems={pagination.totalItems}
+            totalPages={pagination.totalPages}
             paginate={paginate}
-            currentPage={currentPage}
+            currentPage={pagination.page}
           /> : ""}
         </tbody>
       </table>

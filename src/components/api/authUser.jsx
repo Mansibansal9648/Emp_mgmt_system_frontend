@@ -4,9 +4,9 @@ import axios from "axios";
 // ----------------------GetData-----------------------------------------------
 
 
-export const getEmployeeData = async () => {
+export const getEmployeeData = async (page,limit) => {
   try {
-    const response = await axios.get("http://localhost:8080/api/all-employees");
+    const response = await axios.get(`http://localhost:8080/api/all-employees?page=${page}&limit=${limit}`);
     console.log("data", response.data);
     return response
 
