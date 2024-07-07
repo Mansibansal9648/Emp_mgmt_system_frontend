@@ -9,39 +9,32 @@ import Modal from "./Modal";
 import PaginationComponent from "./pagination";
 
 function Employees() {
-  const paginationState={
-    page: "",
-    totalPages: "",
-    totalItems:"",
-  }
+  const initialPaginationState = {
+    page: 1,
+    totalPages: 1,
+    totalItems: 0,
+  };
+
   const [employees, setEmployees] = useState([]);
-   const [currentPage, setCurrentPage] = useState(1);
-   const [itemsPerPage,setItemsPerPage] = useState(5); // Adjust as needed
-  const [pagination, setPagination] = useState(paginationState)
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(5); // Adjust as needed
+  const [pagination, setPagination] = useState(initialPaginationState);
 
-   // Get current items
-
-  //  const indexOfLastItem = currentPage * itemsPerPage;
-  //  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  //  const currentItems = employees.slice(indexOfFirstItem, indexOfLastItem);
- 
-   // Change page
-   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   useEffect(() => {
     getData();
   }, [currentPage]);
 
   const getData = async () => {
-    const res = await getEmployeeData(currentPage,itemsPerPage);
+    const res = await getEmployeeData(currentPage, itemsPerPage);
     if (res && res.data.responseCode === 200) {
       setEmployees(res.data.data);
       setPagination({
         page: res.data.pagination.page,
         totalPages: res.data.pagination.totalPages,
-        totalItems:res.data.pagination.totalItems,
-      })
-
+        totalItems: res.data.pagination.totalItems,
+      });
     } else if (res && res.data.responseCode === 400) {
       toast.error(res.data.errMessage);
     } else {
@@ -82,12 +75,6 @@ function Employees() {
       <div className="employee_nav d-flex justify-content-between align-items-center py-3">
         <h4>Employees List</h4>
         <div className="nav_end">
-          {/* <Link
-            to="/employees/createemployee"
-            className="p-2 nav-link employee_btn border rounded-3 text-white"
-          >
-            Add Employee
-          </Link> */}
           <button
             onClick={openModal}
             className="p-2 employee_btn border rounded-3 text-white"
@@ -112,55 +99,52 @@ function Employees() {
         </thead>
 
         <tbody>
-        {employees.length != 0
-         ?employees.map((item) => {
-            return (
-              <tr key={item.id}>
-                <td>{item.name}</td>
-                <td>{item.email}</td>
-                <td>{item.phone}</td>
-                <td>{item.department}</td>
-                <td>{item.designation}</td>
-                <td>{item.salary}</td>
-                <td>{item.date_of_joining}</td>
-                <td>
-                  <img
-                    src={edit}
-                    alt=""
-                    className="p-2"
-                    onClick={() => {
-                      handleEdit(item);
-                    }}
-                  />
-                  &nbsp;
-                  <img
-                    src={del}
-                    alt=""
-                    className="p-2"
-                    onClick={() => {
-                      handleDelete(item.id);
-                    }}
-                   
-                  />
-                </td>
-            
-              </tr>
-              
-            );
-          })
-          : `No record found`}
-              {employees.length !== 0
-         ?<PaginationComponent
-            // itemsPerPage={itemsPerPage}
-            // totalItems={pagination.totalItems}
-            totalPages={pagination.totalPages}
-            paginate={paginate}
-            currentPage={pagination.page}
-          /> : ""}
+          {employees.length !== 0
+            ? employees.map((item) => {
+                return (
+                  <tr key={item.id}>
+                    <td>{item.name}</td>
+                    <td>{item.email}</td>
+                    <td>{item.phone}</td>
+                    <td>{item.department}</td>
+                    <td>{item.designation}</td>
+                    <td>{item.salary}</td>
+                    <td>{item.date_of_joining}</td>
+                    <td>
+                      <img
+                        src={edit}
+                        alt=""
+                        className="p-2"
+                        onClick={() => {
+                          handleEdit(item.id);
+                        }}
+                      />
+                      &nbsp;
+                      <img
+                        src={del}
+                        alt=""
+                        className="p-2"
+                        onClick={() => {
+                          handleDelete(item.id);
+                        }}
+                      />
+                    </td>
+                  </tr>
+                );
+              })
+            : "No record found"}
         </tbody>
       </table>
+      {employees.length !== 0 && (
+        <PaginationComponent
+          totalPages={pagination.totalPages}
+          paginate={paginate}
+          currentPage={currentPage}
+        />
+      )}
     </div>
   );
 }
 
 export default Employees;
+

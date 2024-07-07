@@ -1,5 +1,5 @@
-import React from 'react';
-import { Pagination } from 'react-bootstrap';
+import React from "react";
+import { Pagination } from "react-bootstrap";
 
 const PaginationComponent = ({ totalPages, currentPage, paginate }) => {
   const pageNumbers = [];
@@ -11,13 +11,30 @@ const PaginationComponent = ({ totalPages, currentPage, paginate }) => {
     }
   } else {
     if (currentPage <= 3) {
-      pageNumbers.push(1, 2, 3, 4, '...', totalPages);
+      pageNumbers.push(1, 2, 3, 4, "...", totalPages);
     } else if (currentPage > 3 && currentPage < totalPages - 2) {
-      pageNumbers.push(1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages);
+      pageNumbers.push(
+        1,
+        "...",
+        currentPage - 1,
+        currentPage,
+        currentPage + 1,
+        "...",
+        totalPages
+      );
     } else {
-      pageNumbers.push(1, '...', totalPages - 3, totalPages - 2, totalPages - 1, totalPages);
+      pageNumbers.push(
+        1,
+        "...",
+        totalPages - 3,
+        totalPages - 2,
+        totalPages - 1,
+        totalPages
+      );
     }
   }
+  console.log("currentPage", currentPage);
+  console.log("total", totalPages);
 
   return (
     <Pagination>
@@ -27,7 +44,7 @@ const PaginationComponent = ({ totalPages, currentPage, paginate }) => {
       />
       {pageNumbers.map((number, index) => (
         <React.Fragment key={index}>
-          {number === '...' ? (
+          {number === "..." ? (
             <Pagination.Ellipsis disabled />
           ) : (
             <Pagination.Item
@@ -40,7 +57,9 @@ const PaginationComponent = ({ totalPages, currentPage, paginate }) => {
         </React.Fragment>
       ))}
       <Pagination.Next
-        onClick={() => currentPage < totalPages && paginate(currentPage + 1)}
+        onClick={() => {
+          currentPage < totalPages && paginate(currentPage + 1);
+        }}
         disabled={currentPage === totalPages}
       />
     </Pagination>
