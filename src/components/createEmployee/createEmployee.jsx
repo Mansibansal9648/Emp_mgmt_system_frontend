@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./createEmployee.css";
-import { createData } from "../api/authUser";
+import { createData, editData } from "../api/authUser";
 import { useFormik } from "formik";
 import { Schemas } from "../schemas/schemas";
 import { toast } from "react-toastify";
@@ -10,13 +10,14 @@ function CreateEmployee(props) {
 
 
   const initialState = {
-    name: "",
-    email: "",
-    phone: "",
-    department: "",
-    designation: "",
-    salary: "",
-    date_of_joining: "",
+    id: props?.editData._id ?? "",
+    name:props?.editData.name ?? "",
+    email:props?.editData.email ?? "",
+    phone: props?.editData.phone ?? "",
+    department: props?.editData.department ?? "",
+    designation: props?.editData.designation ?? "",
+    salary: props?.editData.salary ?? "",
+    date_of_joining: props?.editData.date_of_joining ?? "",
   };
 
   const CreateEntry = async (form_data) => {
@@ -35,13 +36,32 @@ function CreateEmployee(props) {
     return res;
   };
 
+  const handleEdit = async (item) => {
+    const res = await editData(item)
+    if (res && res.status === 200) {
+      toast.success(res.data.resMessage);
+    }
+    else if(res && res.status === 400){
+      // console.log("error")
+      toast.error(res.data.errMessage);
+    }
+    else{
+      toast.error("Something went wrong...")
+    }
+  };
+
   const formik = useFormik({
     initialValues: initialState,
     validationSchema: Schemas,
 
     onSubmit: async (values, action) => {
       console.log("Form values on submit:", values);
-      await CreateEntry(values);
+      if(props.editData){
+        await handleEdit(values)
+      }
+      else{
+        await CreateEntry(values);
+      }
       action.resetForm();
       props.getData()
       props.onClose()

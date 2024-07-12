@@ -2,7 +2,7 @@ import React from 'react';
 import './modal.css';
 import CreateEmployee from '../../createEmployee/createEmployee';
 
-const Modal = ({ show, onClose, getData, children }) => {
+const Modal = ({ show, onClose, getData, editData }) => {
   if (!show) {
     return null;
   }
@@ -10,7 +10,7 @@ const Modal = ({ show, onClose, getData, children }) => {
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content d-flex justify-content-center align-items-center" onClick={e => e.stopPropagation()}>
-        <CreateEmployee getData={getData} onClose={onClose}/>
+        <CreateEmployee getData={getData} editData={editData} onClose={onClose}/>
         <button className="modal-close" onClick={onClose}>
           &times;
         </button>

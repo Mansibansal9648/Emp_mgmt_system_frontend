@@ -40,3 +40,42 @@ export const createData = async (form_data) => {
     return error.response;
   }
 };
+
+
+//--------------------------------DeleteData------------------------------------------
+
+export const deleteData = async (employee_id) =>{
+  // console.log("authID:", employee_id)
+  try{
+    const response = await axios.delete(`http://localhost:8080/api/delete-employee?employeeId=${employee_id}`)
+    console.log(response)
+    return response;
+  }
+  catch(error){
+    console.log("autherror", error)
+    return error.response
+  }
+}
+
+
+//---------------------------------EditData------------------------------------------
+
+export const editData = async (form_data) => {
+  try {
+    const response = await axios.put("http://localhost:8080/api/edit-employee", {
+      employeeId: form_data.id,
+      name: form_data.name,
+      email: form_data.email,
+      phone: form_data.phone,
+      designation: form_data.designation,
+      department: form_data.department,
+      salary: form_data.salary,
+      date_of_joining: form_data.date_of_joining,
+    });
+    console.log(response);
+    return response;
+
+  } catch (error) {
+    return error.response
+  }
+}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { getEmployeeData } from "../../api/authUser";
+import { getEmployeeData, deleteData } from "../../api/authUser";
 import "./employee.css";
 import del from "./images/delete.png";
 import edit from "./images/edit.png";
@@ -42,19 +42,30 @@ function Employees() {
     }
   };
 
-  const handleDelete = (id) => {
-    // Implement delete functionality here
-    toast.success(`Employee with id ${id} deleted successfully.`);
+  const handleDelete = async (id) => {
+    // console.log("ID:",id)
+    const res = await deleteData(id);
+    // console.log("response", res)
+    if (res && res.data.responseCode === 200) {
+      toast.success(res.data.resMessage);
+      getData()
+    } 
+    else if (res && res.data.responseCode === 404) {
+      toast.error(res.data.errMessage);
+    }
+    else {
+      toast.error("Something went wrong");
+    }
+  
   };
 
-  const handleEdit = (id) => {
-    // Implement edit functionality here
-    toast.info(`Editing employee with id ${id}`);
-  };
+ 
 
   const [showModal, setShowModal] = useState(false);
+  const [editData, setEditData]= useState(null)
 
-  const openModal = () => {
+  const openModal = (item) => {
+    setEditData(item)
     setShowModal(true);
   };
 
@@ -65,7 +76,7 @@ function Employees() {
   return (
     <div className="container ps-5 pt-4">
       <div className="App">
-        <Modal show={showModal} onClose={closeModal} getData={getData}>
+        <Modal show={showModal} onClose={closeModal} getData={getData} editData={editData}>
           <div className="container">
             <h2>Modal Title</h2>
             <p>This is the modal content.</p>
@@ -100,9 +111,9 @@ function Employees() {
 
         <tbody>
           {employees.length !== 0
-            ? employees.map((item) => {
+            ? employees?.map((item) => {
                 return (
-                  <tr key={item.id}>
+                  <tr key={item._id}>
                     <td>{item.name}</td>
                     <td>{item.email}</td>
                     <td>{item.phone}</td>
@@ -116,7 +127,8 @@ function Employees() {
                         alt=""
                         className="p-2"
                         onClick={() => {
-                          handleEdit(item.id);
+                          openModal(item)
+                          
                         }}
                       />
                       &nbsp;
@@ -125,7 +137,7 @@ function Employees() {
                         alt=""
                         className="p-2"
                         onClick={() => {
-                          handleDelete(item.id);
+                          handleDelete(item._id);
                         }}
                       />
                     </td>
@@ -133,6 +145,7 @@ function Employees() {
                 );
               })
             : "No record found"}
+            
         </tbody>
       </table>
       {employees.length !== 0 && (
@@ -147,4 +160,3 @@ function Employees() {
 }
 
 export default Employees;
-
