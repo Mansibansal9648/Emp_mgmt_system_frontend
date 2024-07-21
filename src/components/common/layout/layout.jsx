@@ -8,7 +8,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import "../common.css";
-import profile_pic from "./../../images/profile.png"
+import profile_pic from "../../../assets/images/profile.png"
 
 function Layout(props) {
   const [activeMenuItem, setActiveMenuItem] = useState("dashboard");

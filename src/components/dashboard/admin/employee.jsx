@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { getEmployeeData, deleteData } from "../../api/authUser";
+import { getEmployees, deleteEmployee } from "../../../api/employeeApi";
 import "./employee.css";
-import del from "./images/delete.png";
-import edit from "./images/edit.png";
+import del from "../../../assets/images/delete.png";
+import edit from "../../../assets/images/edit.png";
 import Modal from "./Modal";
-import PaginationComponent from "./pagination";
+import PaginationComponent from "../../common/pagination/pagination";
 
 function Employees() {
   const initialPaginationState = {
@@ -27,7 +27,7 @@ function Employees() {
   }, [currentPage]);
 
   const getData = async () => {
-    const res = await getEmployeeData(currentPage, itemsPerPage);
+    const res = await getEmployees(currentPage, itemsPerPage);
     if (res && res.data.responseCode === 200) {
       setEmployees(res.data.data);
       setPagination({
@@ -38,28 +38,26 @@ function Employees() {
     } else if (res && res.data.responseCode === 400) {
       toast.error(res.data.errMessage);
     } else {
-      toast.error("Something went wrong");
+      toast.error("Something went wrong...");
     }
   };
 
   const handleDelete = async (id) => {
     // console.log("ID:",id)
-    const res = await deleteData(id);
+    const res = await deleteEmployee(id);
     // console.log("response", res)
     if (res && res.data.responseCode === 200) {
       toast.success(res.data.resMessage);
       getData()
     } 
-    else if (res && res.data.responseCode === 404) {
+    else if (res && res.data.responseCode === 400) {
       toast.error(res.data.errMessage);
     }
     else {
-      toast.error("Something went wrong");
+      toast.error("Something went wrong..");
     }
   
   };
-
- 
 
   const [showModal, setShowModal] = useState(false);
   const [editData, setEditData]= useState(null)

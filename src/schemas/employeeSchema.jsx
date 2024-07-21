@@ -1,19 +1,19 @@
 import * as Yup from "yup";
 
-export const Schemas = Yup.object({
+export const employeeSchema = Yup.object({
   name: Yup.string()
     .matches(/^[a-zA-Z\s]+$/, "Name can only contain alphabets and spaces")
     .min(3, "Name must be at least 3 characters")
     .max(25, "Name can't exceed 25 characters")
-    .required("Please Enter Your Name"),
+    .required("Name is required field"),
 
   email: Yup.string()
     .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Please enter a valid email address")
-    .required("Please Enter Your Email"),
+    .required("Email is required field"),
 
   phone: Yup.string()
     .matches(/^[0-9]{10}$/, "Contact number must have exactly 10 digits")
-    .required("Contact Number is Required"),
+    .required("Contact Number is required field"),
 
   designation: Yup.string()
     .matches(
@@ -22,13 +22,13 @@ export const Schemas = Yup.object({
     )
     .min(2, "Designation must be at least 2 characters")
     .max(35, "Designation can't exceed 35 characters")
-    .required("Please Enter Your Designation"),
+    .required("Designation is required field"),
 
   department: Yup.string()
     .matches(/^[a-zA-Z]+$/, "Department can only contain alphabets")
     .min(2, "Department must be at least 2 characters")
     .max(25, "Department can't exceed 25 characters")
-    .required("Please Enter Your Department"),
+    .required("Department is required field"),
 
   salary: Yup.string()
     .matches(
@@ -37,9 +37,9 @@ export const Schemas = Yup.object({
     )
     .min(4, "Salary must be at least 4 digit")
     .max(15, "Salary can't exceed 15 digits")
-    .required("Please Enter Your Salary"),
+    .required("Salary is required field"),
 
   date_of_joining: Yup.date()
     .max(new Date(), "Joining date can't be greater than today's date")
-    .required("Please Enter Your Date of Joining"),
+    .required("Date of Joining is required field"),
 });
