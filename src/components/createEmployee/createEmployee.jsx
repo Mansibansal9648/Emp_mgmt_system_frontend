@@ -1,7 +1,7 @@
 import "./createEmployee.css";
 import { createEmployee, editEmployee } from "../../api/employeeApi";
 import { useFormik } from "formik";
-import { employeeSchema } from "../schemas/employeeSchema";
+import { employeeSchema } from "../../schemas/employeeSchema";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
