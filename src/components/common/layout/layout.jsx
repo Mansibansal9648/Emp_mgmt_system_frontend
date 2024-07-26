@@ -31,7 +31,7 @@ function Layout(props) {
                 <div className="imagebox d-flex justify-content-center align-items-center overflow-hidden">
                   <img src={profile_pic} alt="" className="img-fluid" />
                 </div>
-                <h5 className="mt-2 mb-1">Nikita Dhingra</h5>
+                <h5 className="mt-2 mb-1">Admin Name</h5>
                 <h6 className="mx-2 mt-2">Admin</h6>
               </div>
               <div className="container d-flex justify-content-center align-items-center mt-5">

@@ -49,10 +49,13 @@ function CreateEmployee(props) {
 
     onSubmit: async (values, action) => {
       // console.log("Form values on submit:", values);
-      if (props.editData) {
+      console.log("edited",props.editData)
+      if (props.editData &&  props.editData._id) {
         await editEmployeeDetails(values);
       } else {
+        console.log("Flow")
         await createNewEmployee(values);
+
       }
       action.resetForm();
       props.getData();
