@@ -33,8 +33,8 @@ const PaginationComponent = ({ totalPages, currentPage, paginate }) => {
       );
     }
   }
-  console.log("currentPage", currentPage);
-  console.log("total", totalPages);
+  // console.log("currentPage", currentPage);
+  // console.log("total", totalPages);
 
   return (
     <Pagination>

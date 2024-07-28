@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { getEmployees, deleteEmployee } from "../../../api/employeeApi";
+import { getEmployees, deleteEmployee } from "../../../../api/employeeApi";
 import "./employee.css";
-import del from "../../../assets/images/delete.png";
-import edit from "../../../assets/images/edit.png";
-import Modal from "./Modal";
-import PaginationComponent from "../../common/pagination/pagination";
+import del from "../../../../assets/images/delete.png";
+import edit from "../../../../assets/images/edit.png";
+import Modal from "../modal/Modal";
+import PaginationComponent from "../../../common/pagination/pagination";
 
 function Employees() {
   const initialPaginationState = {
