@@ -2,9 +2,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signin from "./components/signin/signin";
 import Layout from "./components/common/layout/layout";
 import AdminDashboard from "./components/dashboard/admin/adminDashboard";
-import Employees from "./components/dashboard/admin/employee";
-import CreateUser from "./components/createEmployee/createEmployee";
+import Employees from "./components/dashboard/admin/employee/employee";
 import { ToastContainer } from "react-toastify";
+import CreateEmployee from "./components/dashboard/admin/createEmployee/createEmployee";
 
 function App() {
   return (
@@ -42,10 +42,10 @@ function App() {
         ></Route>
 
         <Route
-          path="/createuser"
+          path="employees/createemployee"
           element={
             <Layout>
-              <CreateUser />
+              <CreateEmployee />
             </Layout>
           }
         ></Route>

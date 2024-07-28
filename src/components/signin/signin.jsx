@@ -1,8 +1,6 @@
 import React from "react";
 import "./signin.css";
-import { useState } from "react";
 import { useFormik } from "formik";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Signin() {
@@ -20,8 +18,8 @@ function Signin() {
   });
 
   return (
-    <div className="main_contain">
-      <div className="container">
+    <div className="signin_main_contain">
+      <div className="signin_container">
         <form onSubmit={formik.handleSubmit}>
           <div className="text-center title_box">
             <span className="pre_title"></span>
@@ -46,7 +44,7 @@ function Signin() {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="password" className="mb-2 input_label">
+            <label htmlFor="password" className="mb-2 signin_input_label">
               Password
             </label>
             <input

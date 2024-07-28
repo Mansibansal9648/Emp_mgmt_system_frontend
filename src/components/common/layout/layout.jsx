@@ -8,29 +8,31 @@ import SearchIcon from "@mui/icons-material/Search";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import "../common.css";
+import profile_pic from "../../../assets/images/profile.png"
 
 function Layout(props) {
-  const [activeMenuItem, setActiveMenuItem] = useState(null);
+  const [activeMenuItem, setActiveMenuItem] = useState("dashboard");
 
   const handleMenuItemClick = (menuItem) => {
     setActiveMenuItem(menuItem);
   };
+
   return (
     <>
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-2 sidebar border border-1 ">
             <div className="inner_container">
-              <div class="sidebar-profile  text-center ">
-                <div className="mt-3 ">
-                  <span className="logo mx-4 ">DevSages CRM</span>
+              <div className="sidebar-profile text-center">
+                <div className="mt-3">
+                  <span className="logo mx-4">DevSages CRM</span>
                 </div>
 
-                <div class="imagebox d-flex justify-content-center align-items-center">
-                  <img src="" alt="" className="img-fluid rounded-circle" />
+                <div className="imagebox d-flex justify-content-center align-items-center overflow-hidden">
+                  <img src={profile_pic} alt="" className="img-fluid" />
                 </div>
-                <h5 class="mt-2 mb-1">Nikita Dhingra</h5>
-                <h6 class="mx-2 mt-2">Admin</h6>
+                <h5 className="mt-2 mb-1">Admin Name</h5>
+                <h6 className="mx-2 mt-2">Admin</h6>
               </div>
               <div className="container d-flex justify-content-center align-items-center mt-5">
                 <ul className="list-unstyled">
@@ -95,16 +97,16 @@ function Layout(props) {
           </div>
 
           <div className="col-md-10 p-0 rest_part">
-            <div className="container-fluid navbar d-flex justify-content-space-between  border border-1 ">
+            <div className="container-fluid navbar d-flex justify-content-space-between border border-1">
               <button className="rounded-circle">
                 <MenuOpenIcon />
               </button>
-              <div className=" searchbox position-relative d-flex align-items-center">
+              <div className="searchbox position-relative d-flex align-items-center">
                 <SearchIcon className="mr-2" />
                 <input
                   type="text"
                   placeholder="Search here..."
-                  className="input "
+                  className="input"
                 />
                 <NotificationsNoneIcon className="bell-icon" />
               </div>
@@ -117,3 +119,4 @@ function Layout(props) {
   );
 }
 export default Layout;
+
