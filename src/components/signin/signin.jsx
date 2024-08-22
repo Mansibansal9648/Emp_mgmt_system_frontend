@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import { toast } from "react-toastify";
 import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
-import { loginAdmin, loginUser } from "../../api/login";
+import { loginAdmin, loginUser } from "../../api/loginApi";
 import { useNavigate } from 'react-router-dom';
 
 function Signin() {
@@ -19,39 +19,33 @@ function Signin() {
     password: "",
   };
 
-  const loginAdminHandler = async (login_Form_data) => {
-    try {
-      const res = await loginAdmin(login_Form_data);
-      if (res && res.status === 200) {
-        console.log("Login Successfully");
+  const loginAdminHandler = async (loginData) => {
+      const res = await loginAdmin(loginData);
+      if (res && res.data.responseCode === 200) {
         toast.success(res.data.resMessage);
         navigate('/dashboard');
-      } else if (res && res.status === 400) {
-        console.log("Error 400");
-        console.log("Response Data", res.data);
+      } else if (res && res.data.responseCode === 400) {
+        // console.log("Error 400");
+        // console.log("Response Data", res.data);
         toast.error(res.data.errMessage);
-      }
-    } catch (error) {
+      }else{
       toast.error("Something Went Wrong.....");
-      console.log("Error", error);
-    }
+      // console.log("Error", error);
+     }
   };
 
-  const loginUserHandler = async (login_user_Form_data) => {
-    try {
-      const res = await loginUser(login_user_Form_data);
-      if (res && res.status === 200) {
-        console.log("Login Successfully");
-        navigate('/EmployeeDashboard');
+  const loginUserHandler = async (loginData) => {
+      const res = await loginUser(loginData);
+      if (res && res.data.responseCode === 200) {
         toast.success(res.data.resMessage);
-      } else if (res && res.status === 400) {
-        console.log("Error 400");
-        console.log("Response Data", res.data);
+        navigate('/EmployeeDashboard');  
+      } else if (res && res.data.responseCode === 400) {
+        // console.log("Error 400");
+        // console.log("Response Data", res.data);
         toast.error(res.data.errMessage);
       }
-    } catch (error) {
+    else{
       toast.error("Something Went Wrong.....");
-      console.log("Error", error);
     }
   };
 
@@ -60,7 +54,7 @@ function Signin() {
   const formik = useFormik({
     initialValues: initialState,
     onSubmit: async function (values, action) {
-      console.log("Value:", value);
+      // console.log("Value:", value);
       if (value == 1) {
         await loginAdminHandler(values);
       }
