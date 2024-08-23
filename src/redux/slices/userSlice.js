@@ -14,11 +14,11 @@ const userSlice=createSlice({
     initialState:initialState,
     reducers:{
         login:(state,action)=>{
-            state.id=action.payload.id,
-            state.name=action.payload.name,
-            state.email=action.payload.email,
-            state.userType=action.payload.userType,
-            state.isLogin=action.payload.isLogin,
+            state.id=action.payload.id
+            state.name=action.payload.name
+            state.email=action.payload.email
+            state.userType=action.payload.userType
+            state.isLogin=action.payload.isLogin
             state.accessToken=action.payload.accessToken
         }
     }
