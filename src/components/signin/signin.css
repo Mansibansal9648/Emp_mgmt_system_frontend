@@ -50,18 +50,21 @@ transition: 1000ms;
 }
 
 .toggle-button {
-    background-color: grey!important; 
-    color: white;
-    border: none;
+    background-color: rgb(234, 232, 232)!important; 
+    color: rgb(0, 0, 0);
+    border: 0px solid  grey!important; 
     padding: 10px 20px;
     cursor: pointer;
     transition: background-color 0.3s;
-    border: 0px!important;
+    
+  }
+  .toggle-button:hover {
+    color: rgb(0, 0, 0)!important;  
   }
 
   .toggle-button.active {
     background-color: #F8D442!important; 
-    color: black!important;
+    color: rgb(0, 0, 0)!important;
     border: none!important;
   }
   
