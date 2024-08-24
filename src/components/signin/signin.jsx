@@ -24,7 +24,7 @@ function Signin() {
       const res = await loginAdmin(loginData);
       if (res && res.data.responseCode === 200) {
         toast.success(res.data.resMessage);
-        navigate('/dashboard');
+        navigate('/admin-dashboard');
       } else if (res && res.data.responseCode === 400) {
         // console.log("Error 400");
         // console.log("Response Data", res.data);
@@ -39,7 +39,7 @@ function Signin() {
       const res = await loginUser(loginData);
       if (res && res.data.responseCode === 200) {
         toast.success(res.data.resMessage);
-        navigate('/EmployeeDashboard');  
+        navigate('/employee-dashboard');  
       } else if (res && res.data.responseCode === 400) {
         // console.log("Error 400");
         // console.log("Response Data", res.data);
