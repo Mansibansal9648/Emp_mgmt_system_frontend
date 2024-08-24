@@ -48,6 +48,23 @@ transition: 1000ms;
     gap: 10px;
     margin-bottom: 20px;
 }
+
+.toggle-button {
+    background-color: grey!important; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: 0px!important;
+  }
+
+  .toggle-button.active {
+    background-color: #F8D442!important; 
+    color: black!important;
+    border: none!important;
+  }
+  
 @media only screen and (max-width:768px) {
     .container{
         height: 500px;

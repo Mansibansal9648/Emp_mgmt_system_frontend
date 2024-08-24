@@ -6,10 +6,11 @@ import ToggleButton from "react-bootstrap/ToggleButton";
 import { toast } from "react-toastify";
 import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 import { loginAdmin, loginUser } from "../../api/login";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 function Signin() {
   const [value, setValue] = useState(1);
+  const [activeValue, setActiveValue] = useState(3);
   const handleChange = (val) => {
     setValue(val);
   };
@@ -25,7 +26,7 @@ function Signin() {
       if (res && res.status === 200) {
         console.log("Login Successfully");
         toast.success(res.data.resMessage);
-        navigate('/dashboard');
+        navigate("/dashboard");
       } else if (res && res.status === 400) {
         console.log("Error 400");
         console.log("Response Data", res.data);
@@ -42,7 +43,7 @@ function Signin() {
       const res = await loginUser(login_user_Form_data);
       if (res && res.status === 200) {
         console.log("Login Successfully");
-        navigate('/EmployeeDashboard');
+        navigate("/EmployeeDashboard");
         toast.success(res.data.resMessage);
       } else if (res && res.status === 400) {
         console.log("Error 400");
@@ -55,16 +56,13 @@ function Signin() {
     }
   };
 
-
-
   const formik = useFormik({
     initialValues: initialState,
     onSubmit: async function (values, action) {
       console.log("Value:", value);
       if (value == 1) {
         await loginAdminHandler(values);
-      }
-      else if(value ==2) {
+      } else if (value == 2) {
         await loginUserHandler(values);
       }
       action.resetForm();
@@ -83,22 +81,31 @@ function Signin() {
           <p className="text-center text-secondary">
             Enter your credentials to access your account
           </p>
-          <div className="mb-4">
+          <div className="mb-4 d-flex  justify-content-center align-items-center border-none">
             <ToggleButtonGroup
               type="radio"
               name="options"
               value={value}
+              className="border-0"
               onChange={handleChange}
             >
-              <ToggleButton id="tbg-btn-1" value={1}>
+              <ToggleButton
+                id="tbg-btn-1"
+                value={1}
+                className={`toggle-button ${activeValue === 3 ? "active" : ""}`}
+                onClick={() => setActiveValue(3)}
+              >
                 Admin Login
               </ToggleButton>
-              <ToggleButton id="tbg-btn-2" value={2}>
+              <ToggleButton
+                id="tbg-btn-2"
+                value={2}
+                className={`toggle-button ${activeValue === 4 ? "active" : ""}`}
+                onClick={() => setActiveValue(4)}
+              >
                 User Login
               </ToggleButton>
             </ToggleButtonGroup>
-            {/* <button onClick={handleChange}>Admin Login</button>
-            <button onClick={handleChange}>User Login</button> */}
           </div>
           <div className="mb-3">
             <label htmlFor="email" className="mb-2 input_label">
