@@ -26,7 +26,7 @@ function App() {
         <Route path="/" element={<Signin />}></Route>
         <Route path="/signin" element={<Signin />}></Route>
         <Route
-          path="/dashboard"
+          path="/admin-dashboard"
           element={
             <Layout>
               <AdminDashboard />
@@ -43,7 +43,7 @@ function App() {
         ></Route>
 
         <Route
-          path="/employees/createemployee"
+          path="/employees/create-employee"
           element={
             <Layout>
               <CreateEmployee />
@@ -51,7 +51,7 @@ function App() {
           }
         ></Route>
          <Route
-          path="/EmployeeDashboard"
+          path="/employee-dashboard"
           element={
             <Layout>
               <EmployeeDashboard />

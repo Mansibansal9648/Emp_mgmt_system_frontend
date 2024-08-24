@@ -1,4 +1,3 @@
-import { Password } from "@mui/icons-material";
 import axios from "axios";
 // ----------------------loginAdminAPI-----------------------------------------------
 
@@ -22,14 +21,16 @@ export const loginAdmin = async (data) => {
 
 // ----------------------loginUserAPI-----------------------------------------------
 
-export const loginUser = async (login_data) => {
+export const loginUser = async (loginData) => {
   try {
-    const response = axios.post(`http://localhost:8080/auth/login-employee`, {
-      email: login_data.email,
-      password: login_data.password,
+    const response = await axios.post(`http://localhost:8080/auth/login-employee`, {
+      email: loginData.email,
+      password: loginData.password,
     });
+    // console.log("response", response.data);
     return response;
   } catch (error) {
+    // console.log("error",error)
     return error.response;
   }
 };
