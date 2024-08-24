@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Signin() {
   const [value, setValue] = useState(1);
-  const [activeValue, setActiveValue] = useState(3);
+  // const [activeValue, setActiveValue] = useState(3);
   const handleChange = (val) => {
     setValue(val);
   };
@@ -86,16 +86,16 @@ function Signin() {
               <ToggleButton
                 id="tbg-btn-1"
                 value={1}
-                className={`toggle-button ${activeValue === 3 ? "active" : ""}`}
-                onClick={() => setActiveValue(3)}
+                className={`toggle-button ${value === 1 ? "active" : ""}`}
+                // onClick={() => setActiveValue(3)}
               >
                 Admin Login
               </ToggleButton>
               <ToggleButton
                 id="tbg-btn-2"
                 value={2}
-                className={`toggle-button ${activeValue === 4 ? "active" : ""}`}
-                onClick={() => setActiveValue(4)}
+                className={`toggle-button ${value === 2 ? "active" : ""}`}
+                // onClick={() => setActiveValue(4)}
               >
                 User Login
               </ToggleButton>
