@@ -1,18 +1,18 @@
 /* ADMIN DASHBOARD CSS -- Start */
 
 .admin-portal {
-  width: 350px;
-  height: 200px;
-  background-color: blueviolet;
-  padding: 25px;
-  border-radius: 6px;
-  background-color: #f0f9ff;
+    width: 350px;
+    height: 200px;
+    background-color: blueviolet;
+    padding: 25px;
+    border-radius: 6px;
+    background-color: #f0f9ff;
 }
 
 .admin-icon {
-  width: 60px;
-  height: 60px;
-  color: aqua;
+    width: 60px;
+    height: 60px;
+    color: aqua;
 }
 
 /* .admin-portal {
