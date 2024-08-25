@@ -5,6 +5,7 @@ import AdminDashboard from "./components/dashboard/admin/adminDashboard";
 import Employees from "./components/dashboard/admin/employee/employee";
 import { ToastContainer } from "react-toastify";
 import CreateEmployee from "./components/dashboard/admin/createEmployee/createEmployee";
+import EmployeeDashboard from "./components/dashboard/employee/employeeDashboard";
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
         <Route path="/" element={<Signin />}></Route>
         <Route path="/signin" element={<Signin />}></Route>
         <Route
-          path="/dashboard"
+          path="/admin-dashboard"
           element={
             <Layout>
               <AdminDashboard />
@@ -42,10 +43,18 @@ function App() {
         ></Route>
 
         <Route
-          path="employees/createemployee"
+          path="/employees/create-employee"
           element={
             <Layout>
               <CreateEmployee />
+            </Layout>
+          }
+        ></Route>
+         <Route
+          path="/employee-dashboard"
+          element={
+            <Layout>
+              <EmployeeDashboard />
             </Layout>
           }
         ></Route>

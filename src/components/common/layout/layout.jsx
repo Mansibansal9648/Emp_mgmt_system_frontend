@@ -42,7 +42,7 @@ function Layout(props) {
                     }`}
                     onClick={() => handleMenuItemClick("dashboard")}
                   >
-                    <Link to="/dashboard" className="nav-link">
+                    <Link to="/admin-dashboard" className="nav-link">
                       <DashboardIcon className="mx-2" />
                       Dashboard
                     </Link>

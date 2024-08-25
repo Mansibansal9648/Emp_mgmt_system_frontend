@@ -7,7 +7,7 @@
     align-items: center;
 }
 .signin_container{
-    height: 550px;
+    min-height: 550px;
     width: 475px;
     background-color: white;
     border-radius: 20px;
@@ -48,6 +48,26 @@ transition: 1000ms;
     gap: 10px;
     margin-bottom: 20px;
 }
+
+.toggle-button {
+    background-color: rgb(234, 232, 232)!important; 
+    color: rgb(0, 0, 0);
+    border: 0px solid  grey!important; 
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    
+  }
+  .toggle-button:hover {
+    color: rgb(0, 0, 0)!important;  
+  }
+
+  .toggle-button.active {
+    background-color: #F8D442!important; 
+    color: rgb(0, 0, 0)!important;
+    border: none!important;
+  }
+  
 @media only screen and (max-width:768px) {
     .container{
         height: 500px;
