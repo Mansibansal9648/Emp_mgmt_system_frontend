@@ -7,7 +7,7 @@
     align-items: center;
 }
 .signin_container{
-    height: 550px;
+    min-height: 550px;
     width: 475px;
     background-color: white;
     border-radius: 20px;

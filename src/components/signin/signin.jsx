@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import "./signin.css";
 import { useFormik } from "formik";
+import { signSchema } from "../../schemas/signSchema";
 import "react-toastify/dist/ReactToastify.css";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import { toast } from "react-toastify";
 import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 import { loginAdmin, loginUser } from "../../api/loginApi";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 function Signin() {
   const [value, setValue] = useState(1);
@@ -21,37 +22,37 @@ function Signin() {
   };
 
   const loginAdminHandler = async (loginData) => {
-      const res = await loginAdmin(loginData);
-      if (res && res.data.responseCode === 200) {
-        toast.success(res.data.resMessage);
-        navigate('/admin-dashboard');
-      } else if (res && res.data.responseCode === 400) {
-        // console.log("Error 400");
-        // console.log("Response Data", res.data);
-        toast.error(res.data.errMessage);
-      }else{
+    const res = await loginAdmin(loginData);
+    if (res && res.data.responseCode === 200) {
+      toast.success(res.data.resMessage);
+      navigate("/admin-dashboard");
+    } else if (res && res.data.responseCode === 400) {
+      // console.log("Error 400");
+      // console.log("Response Data", res.data);
+      toast.error(res.data.errMessage);
+    } else {
       toast.error("Something Went Wrong.....");
       // console.log("Error", error);
-     }
+    }
   };
 
   const loginUserHandler = async (loginData) => {
-      const res = await loginUser(loginData);
-      if (res && res.data.responseCode === 200) {
-        toast.success(res.data.resMessage);
-        navigate('/employee-dashboard');  
-      } else if (res && res.data.responseCode === 400) {
-        // console.log("Error 400");
-        // console.log("Response Data", res.data);
-        toast.error(res.data.errMessage);
-      }
-    else{
+    const res = await loginUser(loginData);
+    if (res && res.data.responseCode === 200) {
+      toast.success(res.data.resMessage);
+      navigate("/employee-dashboard");
+    } else if (res && res.data.responseCode === 400) {
+      // console.log("Error 400");
+      // console.log("Response Data", res.data);
+      toast.error(res.data.errMessage);
+    } else {
       toast.error("Something Went Wrong.....");
     }
   };
 
   const formik = useFormik({
     initialValues: initialState,
+    validationSchema: signSchema,
     onSubmit: async function (values, action) {
       // console.log("Value:", value);
       if (value == 1) {
@@ -108,12 +109,19 @@ function Signin() {
             <input
               type="email"
               name="email"
-              className="form-control"
               placeholder="Enter your email"
               value={formik.values.email}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
+              className={`form-control ${
+                formik.errors.email && formik.touched.email
+                  ? "border border-danger "
+                  : ""
+              }`}
             />
+            {formik.errors.email && formik.touched.email ? (
+              <p className="form_error">{formik.errors.email}</p>
+            ) : null}
           </div>
           <div className="mb-3">
             <label htmlFor="password" className="mb-2 signin_input_label">
