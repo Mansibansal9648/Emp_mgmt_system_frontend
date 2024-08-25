@@ -2,10 +2,13 @@ import axios from 'axios'
 
 // ----------------------GetData-----------------------------------------------
 
-export const getEmployees = async (page, limit) => {
+export const getEmployees = async (page, limit,accessToken) => {
     try {
+        const headers = {
+            'Authorization': `Bearer ${accessToken}`
+        };
         const response = await axios.get(
-            `http://localhost:8080/api/all-employees?page=${page}&limit=${limit}`
+            `http://localhost:8080/api/all-employees?page=${page}&limit=${limit}`,{headers:headers}
         )
         // console.log("data", response.data);
         return response

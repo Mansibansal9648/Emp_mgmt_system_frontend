@@ -7,8 +7,10 @@ import del from '../../../../assets/images/delete.png'
 import edit from '../../../../assets/images/edit.png'
 import Modal from '../modal/Modal'
 import PaginationComponent from '../../../common/pagination/pagination'
+import { useSelector } from 'react-redux'
 
 function Employees() {
+    const user=useSelector((state)=>state.user)
     const initialPaginationState = {
         page: 1,
         totalPages: 1,
@@ -27,7 +29,7 @@ function Employees() {
     }, [currentPage])
 
     const getData = async () => {
-        const res = await getEmployees(currentPage, itemsPerPage)
+        const res = await getEmployees(currentPage, itemsPerPage,user.accessToken)
         if (res && res.data.responseCode === 200) {
             setEmployees(res.data.data)
             setPagination({
