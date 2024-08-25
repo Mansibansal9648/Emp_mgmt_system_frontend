@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./signin.css";
 import { useFormik } from "formik";
-import { signSchema } from "../../schemas/signSchema";
+import { loginSchema } from "../../schemas/loginSchema";
 import "react-toastify/dist/ReactToastify.css";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import { toast } from "react-toastify";
@@ -52,7 +52,7 @@ function Signin() {
 
   const formik = useFormik({
     initialValues: initialState,
-    validationSchema: signSchema,
+    validationSchema: loginSchema,
     onSubmit: async function (values, action) {
       // console.log("Value:", value);
       if (value == 1) {
@@ -130,12 +130,19 @@ function Signin() {
             <input
               type="password"
               name="password"
-              className="form-control"
               placeholder="Enter your password"
               value={formik.values.password}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
+              className={`form-control ${
+                formik.errors.password && formik.touched.password
+                  ? "border border-danger "
+                  : ""
+              }`}
             />
+                {formik.errors.password && formik.touched.password ? (
+              <p className="form_error">{formik.errors.password}</p>
+            ) : null}
           </div>
           <button className=" signin mb-3">SIGN IN</button>
           <div className="text-center">
