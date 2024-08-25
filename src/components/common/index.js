@@ -1,3 +1,3 @@
-import ProfilePage from "./profilePage";
+import ProfilePage from './profilePage'
 
-module.exports = { ProfilePage: ProfilePage };
+module.exports = { ProfilePage: ProfilePage }

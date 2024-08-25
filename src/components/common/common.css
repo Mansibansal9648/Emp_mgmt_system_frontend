@@ -2,78 +2,78 @@
 
 /* <----Sidebar CSS-----> */
 .sidebar {
-  background-color: #f2eae1;
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  position: relative;
-  overflow: auto;
+    background-color: #f2eae1;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    position: relative;
+    overflow: auto;
 }
 .inner_container {
-  background-color: #f2eae1;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
+    background-color: #f2eae1;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
 }
 .sidebar .logo {
-  font-weight: 800;
-  font-size: 24px;
-  color: #292929;
-  padding-left: 23px;
+    font-weight: 800;
+    font-size: 24px;
+    color: #292929;
+    padding-left: 23px;
 }
 .imagebox {
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
-  margin: 15px auto;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin: 15px auto;
 }
 .dashboard-color {
-  background-color: #feaf00;
+    background-color: #feaf00;
 }
 .sidebar-menu.active {
-  background-color: #feaf00;
-  outline: none;
-  border: 0px;
+    background-color: #feaf00;
+    outline: none;
+    border: 0px;
 }
 
 .navbar {
-  background-color: #fff;
-  height: 70px;
-  padding: 10px 50px;
-  position: sticky;
-  top: 0;
-  /* z-index: 1; */
+    background-color: #fff;
+    height: 70px;
+    padding: 10px 50px;
+    position: sticky;
+    top: 0;
+    /* z-index: 1; */
 }
 
 .navbar .rounded-circle {
-  border-radius: 50%;
-  background-color: #ebe9e9;
-  border: none;
-  padding: 5px;
+    border-radius: 50%;
+    background-color: #ebe9e9;
+    border: none;
+    padding: 5px;
 }
 .navbar .searchbox {
-  width: 250px;
-  height: 45px;
-  padding: 3px 10px;
-  border-radius: 6px;
-  background-color: #ebe9e9;
-  gap: 10px;
+    width: 250px;
+    height: 45px;
+    padding: 3px 10px;
+    border-radius: 6px;
+    background-color: #ebe9e9;
+    gap: 10px;
 }
 .navbar .searchbox .input {
-  padding-left: 5px;
-  border: 0px;
-  outline: none;
-  background: transparent;
+    padding-left: 5px;
+    border: 0px;
+    outline: none;
+    background: transparent;
 }
 .navbar .bell-icon {
-  width: 42px;
-  height: 32px;
-  margin: 12px;
+    width: 42px;
+    height: 32px;
+    margin: 12px;
 }
 .form_error {
-  color: red;
+    color: red;
 }
 
 /* layout css end*/
