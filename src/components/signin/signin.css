@@ -6,7 +6,7 @@
     justify-content: center;
     align-items: center;
 }
-.signin_container{
+.signin_container {
     min-height: 550px;
     width: 475px;
     background-color: white;
@@ -50,26 +50,25 @@
 }
 
 .toggle-button {
-    background-color: rgb(234, 232, 232)!important; 
+    background-color: rgb(234, 232, 232) !important;
     color: rgb(0, 0, 0);
-    border: 0px solid  grey!important; 
+    border: 0px solid grey !important;
     padding: 10px 20px;
     cursor: pointer;
     transition: background-color 0.3s;
-    
-  }
-  .toggle-button:hover {
-    color: rgb(0, 0, 0)!important;  
-  }
+}
+.toggle-button:hover {
+    color: rgb(0, 0, 0) !important;
+}
 
-  .toggle-button.active {
-    background-color: #F8D442!important; 
-    color: rgb(0, 0, 0)!important;
-    border: none!important;
-  }
-  
-@media only screen and (max-width:768px) {
-    .container{
+.toggle-button.active {
+    background-color: #f8d442 !important;
+    color: rgb(0, 0, 0) !important;
+    border: none !important;
+}
+
+@media only screen and (max-width: 768px) {
+    .container {
         height: 500px;
         width: 330px;
         background-color: white;
