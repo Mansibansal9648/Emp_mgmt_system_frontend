@@ -20,10 +20,13 @@ export const getEmployees = async (page, limit,accessToken) => {
 
 // -----------------------------CreateData---------------------------------------
 
-export const createEmployee = async (form_data) => {
+export const createEmployee = async (form_data,accessToken) => {
     try {
+        const headers = {
+            'Authorization': `Bearer ${accessToken}`
+        };
         const response = await axios.post(
-            'http://localhost:8080/api/create-employee',
+            'http://localhost:8080/api/create-employee',{headers:headers},
             {
                 name: form_data.name,
                 email: form_data.email,
@@ -44,11 +47,14 @@ export const createEmployee = async (form_data) => {
 
 //--------------------------------DeleteData------------------------------------------
 
-export const deleteEmployee = async (employee_id) => {
+export const deleteEmployee = async (employee_id,accessToken) => {
     // console.log("authID:", employee_id)
     try {
+        const headers = {
+            'Authorization': `Bearer ${accessToken}`
+        };
         const response = await axios.delete(
-            `http://localhost:8080/api/delete-employee?employeeId=${employee_id}`
+            `http://localhost:8080/api/delete-employee?employeeId=${employee_id}`,{headers:headers}
         )
         // console.log(response)
         return response
@@ -60,10 +66,13 @@ export const deleteEmployee = async (employee_id) => {
 
 //---------------------------------EditData------------------------------------------
 
-export const editEmployee = async (form_data) => {
+export const editEmployee = async (form_data,accessToken) => {
     try {
+        const headers = {
+            'Authorization': `Bearer ${accessToken}`
+        };
         const response = await axios.put(
-            'http://localhost:8080/api/edit-employee',
+            'http://localhost:8080/api/edit-employee',{headers:headers},
             {
                 employeeId: form_data.id,
                 name: form_data.name,

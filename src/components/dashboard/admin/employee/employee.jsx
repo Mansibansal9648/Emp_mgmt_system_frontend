@@ -46,7 +46,7 @@ function Employees() {
 
     const handleDelete = async (id) => {
         // console.log("ID:",id)
-        const res = await deleteEmployee(id)
+        const res = await deleteEmployee(id,user.accessToken)
         // console.log("response", res)
         if (res && res.data.responseCode === 200) {
             toast.success(res.data.resMessage)

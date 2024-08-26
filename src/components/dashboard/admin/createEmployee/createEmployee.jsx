@@ -4,8 +4,10 @@ import { useFormik } from 'formik'
 import { employeeSchema } from '../../../../schemas/employeeSchema'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { useSelector } from 'react-redux'
 
 function CreateEmployee(props) {
+    const user = useSelector((state) => state.user)
     const initialState = {
         id: props?.editData._id ?? '',
         name: props?.editData.name ?? '',
@@ -18,7 +20,7 @@ function CreateEmployee(props) {
     }
 
     const createNewEmployee = async (form_data) => {
-        const res = await createEmployee(form_data)
+        const res = await createEmployee(form_data, user.accessToken)
 
         if (res && res.status === 201) {
             toast.success(res.data.resMessage)
@@ -32,7 +34,7 @@ function CreateEmployee(props) {
     }
 
     const editEmployeeDetails = async (item) => {
-        const res = await editEmployee(item)
+        const res = await editEmployee(item, user.accessToken)
         if (res && res.status === 200) {
             toast.success(res.data.resMessage)
         } else if (res && res.status === 400) {
