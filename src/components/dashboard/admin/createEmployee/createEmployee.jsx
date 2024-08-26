@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux'
 function CreateEmployee(props) {
     const user = useSelector((state) => state.user)
     const initialState = {
+        userType: props?.editData.userType ?? 'Employee',
         id: props?.editData._id ?? '',
         name: props?.editData.name ?? '',
         email: props?.editData.email ?? '',
