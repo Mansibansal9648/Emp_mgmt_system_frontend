@@ -6,6 +6,7 @@ import Employees from './components/dashboard/admin/employee/employee'
 import { ToastContainer } from 'react-toastify'
 import CreateEmployee from './components/dashboard/admin/createEmployee/createEmployee'
 import EmployeeDashboard from './components/dashboard/employee/employeeDashboard'
+import PrivateRoute from './components/common/privateRoutes/privateRoute'
 
 function App() {
     return (
@@ -23,14 +24,16 @@ function App() {
                 theme="colored"
             />
             <Routes>
-                <Route path="/" element={<Signin />}></Route>
-                <Route path="/signin" element={<Signin />}></Route>
+                <Route path="/" element={<PrivateRoute><Signin /></PrivateRoute>}></Route>
+                <Route path="/signin" element={<PrivateRoute><Signin /></PrivateRoute>}></Route>
                 <Route
                     path="/admin-dashboard"
                     element={
+                        <PrivateRoute>
                         <Layout>
                             <AdminDashboard />
                         </Layout>
+                        </PrivateRoute>
                     }
                 ></Route>
                 <Route
@@ -53,9 +56,11 @@ function App() {
                 <Route
                     path="/employee-dashboard"
                     element={
+                        <PrivateRoute>
                         <Layout>
                             <EmployeeDashboard />
                         </Layout>
+                        </PrivateRoute>
                     }
                 ></Route>
             </Routes>
