@@ -8,8 +8,11 @@ import { toast } from 'react-toastify'
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
 import { loginAdmin, loginUser } from '../../api/loginApi'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { login } from '../../redux/slices/userSlice'
 
 function Signin() {
+    const dispatch=useDispatch()
     const [value, setValue] = useState(1)
     // const [activeValue, setActiveValue] = useState(3);
     const handleChange = (val) => {
@@ -25,6 +28,8 @@ function Signin() {
         const res = await loginAdmin(loginData)
         if (res && res.data.responseCode === 200) {
             toast.success(res.data.resMessage)
+            // console.log(res.data.data)
+            dispatch(login(res.data.data))
             navigate('/admin-dashboard')
         } else if (res && res.data.responseCode === 400) {
             // console.log("Error 400");
@@ -40,6 +45,7 @@ function Signin() {
         const res = await loginUser(loginData)
         if (res && res.data.responseCode === 200) {
             toast.success(res.data.resMessage)
+            dispatch(login(res.data.data))
             navigate('/employee-dashboard')
         } else if (res && res.data.responseCode === 400) {
             // console.log("Error 400");

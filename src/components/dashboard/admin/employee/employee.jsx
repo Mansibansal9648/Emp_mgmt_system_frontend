@@ -7,8 +7,10 @@ import del from '../../../../assets/images/delete.png'
 import edit from '../../../../assets/images/edit.png'
 import Modal from '../modal/Modal'
 import PaginationComponent from '../../../common/pagination/pagination'
+import { useSelector } from 'react-redux'
 
 function Employees() {
+    const user=useSelector((state)=>state.user)
     const initialPaginationState = {
         page: 1,
         totalPages: 1,
@@ -27,8 +29,10 @@ function Employees() {
     }, [currentPage])
 
     const getData = async () => {
-        const res = await getEmployees(currentPage, itemsPerPage)
-        if (res && res.data.responseCode === 200) {
+        const res = await getEmployees(currentPage, itemsPerPage,user.accessToken)
+        if (res && res.data.responseCode === 401) {
+            toast.error(res.data.errMessage);
+        }else if (res && res.data.responseCode === 200) {
             setEmployees(res.data.data)
             setPagination({
                 page: res.data.pagination.page,
@@ -44,9 +48,11 @@ function Employees() {
 
     const handleDelete = async (id) => {
         // console.log("ID:",id)
-        const res = await deleteEmployee(id)
+        const res = await deleteEmployee(id,user.accessToken)
         // console.log("response", res)
-        if (res && res.data.responseCode === 200) {
+        if (res && res.data.responseCode === 401) {
+            toast.error(res.data.errMessage);
+        }else if (res && res.data.responseCode === 200) {
             toast.success(res.data.resMessage)
             getData()
         } else if (res && res.data.responseCode === 400) {

@@ -4,9 +4,12 @@ import { useFormik } from 'formik'
 import { employeeSchema } from '../../../../schemas/employeeSchema'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { useSelector } from 'react-redux'
 
 function CreateEmployee(props) {
+    const user = useSelector((state) => state.user)
     const initialState = {
+        userType: props?.editData.userType ?? 'Employee',
         id: props?.editData._id ?? '',
         name: props?.editData.name ?? '',
         email: props?.editData.email ?? '',
@@ -18,9 +21,10 @@ function CreateEmployee(props) {
     }
 
     const createNewEmployee = async (form_data) => {
-        const res = await createEmployee(form_data)
-
-        if (res && res.status === 201) {
+        const res = await createEmployee(form_data, user.accessToken)
+        if (res && res.data.responseCode === 401) {
+            toast.error(res.data.errMessage);
+        }else if (res && res.status === 201) {
             toast.success(res.data.resMessage)
         } else if (res && res.status === 400) {
             // console.log("error")
@@ -32,8 +36,10 @@ function CreateEmployee(props) {
     }
 
     const editEmployeeDetails = async (item) => {
-        const res = await editEmployee(item)
-        if (res && res.status === 200) {
+        const res = await editEmployee(item, user.accessToken)
+        if (res && res.data.responseCode === 401) {
+            toast.error(res.data.errMessage);
+        }else if (res && res.status === 200) {
             toast.success(res.data.resMessage)
         } else if (res && res.status === 400) {
             // console.log("error")
