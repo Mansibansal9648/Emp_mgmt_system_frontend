@@ -22,8 +22,9 @@ function CreateEmployee(props) {
 
     const createNewEmployee = async (form_data) => {
         const res = await createEmployee(form_data, user.accessToken)
-
-        if (res && res.status === 201) {
+        if (res && res.data.responseCode === 401) {
+            toast.error(res.data.errMessage);
+        }else if (res && res.status === 201) {
             toast.success(res.data.resMessage)
         } else if (res && res.status === 400) {
             // console.log("error")
@@ -36,7 +37,9 @@ function CreateEmployee(props) {
 
     const editEmployeeDetails = async (item) => {
         const res = await editEmployee(item, user.accessToken)
-        if (res && res.status === 200) {
+        if (res && res.data.responseCode === 401) {
+            toast.error(res.data.errMessage);
+        }else if (res && res.status === 200) {
             toast.success(res.data.resMessage)
         } else if (res && res.status === 400) {
             // console.log("error")
