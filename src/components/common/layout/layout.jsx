@@ -9,8 +9,10 @@ import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone'
 import MenuOpenIcon from '@mui/icons-material/MenuOpen'
 import '../common.css'
 import profile_pic from '../../../assets/images/profile.png'
+import { useSelector } from 'react-redux'
 
 function Layout(props) {
+    const user = useSelector((state)=>state.user)
     const [activeMenuItem, setActiveMenuItem] = useState('dashboard')
 
     const handleMenuItemClick = (menuItem) => {
@@ -37,7 +39,7 @@ function Layout(props) {
                                         className="img-fluid"
                                     />
                                 </div>
-                                <h5 className="mt-2 mb-1">Admin Name</h5>
+                                <h5 className="mt-2 mb-1">{user.name}</h5>
                                 <h6 className="mx-2 mt-2">Admin</h6>
                             </div>
                             <div className="container d-flex justify-content-center align-items-center mt-5">

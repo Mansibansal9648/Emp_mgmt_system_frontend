@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { getEmployees, deleteEmployee } from '../../../../api/employeeApi'
+import { getEmployees } from '../../../../api/employeeApi'
 import './employee.css'
 import del from '../../../../assets/images/delete.png'
 import edit from '../../../../assets/images/edit.png'
 import Modal from '../modal/Modal'
+import DeleteModal from '../modal/deleteModal'
 import PaginationComponent from '../../../common/pagination/pagination'
 import { useSelector } from 'react-redux'
 
@@ -46,32 +47,27 @@ function Employees() {
         }
     }
 
-    const handleDelete = async (id) => {
-        // console.log("ID:",id)
-        const res = await deleteEmployee(id,user.accessToken)
-        // console.log("response", res)
-        if (res && res.data.responseCode === 401) {
-            toast.error(res.data.errMessage);
-        }else if (res && res.data.responseCode === 200) {
-            toast.success(res.data.resMessage)
-            getData()
-        } else if (res && res.data.responseCode === 400) {
-            toast.error(res.data.errMessage)
-        } else {
-            toast.error('Something went wrong..')
-        }
-    }
-
     const [showModal, setShowModal] = useState(false)
+    const [showDeleteModal, setShowDeleteModal] = useState(false)
     const [editData, setEditData] = useState(null)
+    const [deleteData, setDeleteData] = useState(null)
 
     const openModal = (item) => {
         setEditData(item)
         setShowModal(true)
     }
 
+    const openDeleteModal = (_id) => {
+            setDeleteData(_id)
+            setShowDeleteModal(true)
+    }
+
     const closeModal = () => {
         setShowModal(false)
+    }
+
+    const closeDeleteModal = () => {
+        setShowDeleteModal(false)
     }
 
     return (
@@ -88,6 +84,17 @@ function Employees() {
                         <p>This is the modal content.</p>
                     </div>
                 </Modal>
+                <DeleteModal
+                    show={showDeleteModal}
+                    onClose={closeDeleteModal}
+                    getData={getData}
+                    deleteData={deleteData}
+                >
+                    <div className="container">
+                        <h2>Modal Title</h2>
+                        <p>This is the modal content.</p>
+                    </div>
+                </DeleteModal>
             </div>
             <div className="employee_nav d-flex justify-content-between align-items-center py-3">
                 <h4>Employees List</h4>
@@ -142,7 +149,7 @@ function Employees() {
                                               alt=""
                                               className="p-2"
                                               onClick={() => {
-                                                  handleDelete(item._id)
+                                                  openDeleteModal(item._id)
                                               }}
                                           />
                                       </td>
