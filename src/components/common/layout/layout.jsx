@@ -12,7 +12,7 @@ import profile_pic from '../../../assets/images/profile.png'
 import { useSelector } from 'react-redux'
 
 function Layout(props) {
-    const userType = useSelector((state)=>state.userType)
+    const userType = useSelector((state)=>state.user)
     const user = useSelector((state)=>state.user)
     const [activeMenuItem, setActiveMenuItem] = useState('dashboard')
     const [display,setDisplay] = useState("show")
@@ -21,9 +21,7 @@ function Layout(props) {
         setActiveMenuItem(menuItem)
     }
 
-    const sidebar_display = () =>{
-
-    }
+   console.log("usertype:", user.userType)
 
     return (
         <>
@@ -46,7 +44,7 @@ function Layout(props) {
                                     />
                                 </div>
                                 <h5 className="mt-2 mb-1">{user.name}</h5>
-                                { userType === "Admin" ? <h6 className="mx-2 mt-2">Admin</h6> : <h6 className="mx-2 mt-2">Employee</h6>}
+                                { user.userType === "Admin" ? <h6 className="mx-2 mt-2">Admin</h6> : <h6 className="mx-2 mt-2">Employee</h6>}
                             </div>
                             <div className="container d-flex justify-content-center align-items-center mt-5">
                                     { userType === "Admin" ? 
