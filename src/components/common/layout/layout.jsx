@@ -9,8 +9,12 @@ import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone'
 import MenuOpenIcon from '@mui/icons-material/MenuOpen'
 import '../common.css'
 import profile_pic from '../../../assets/images/profile.png'
+import { useSelector } from 'react-redux'
 
 function Layout(props) {
+    const userType = useSelector((state)=>state.userType)
+    const user = useSelector((state)=>state.name)
+    console.log("user", user)
     const [activeMenuItem, setActiveMenuItem] = useState('dashboard')
 
     const handleMenuItemClick = (menuItem) => {
@@ -37,10 +41,11 @@ function Layout(props) {
                                         className="img-fluid"
                                     />
                                 </div>
-                                <h5 className="mt-2 mb-1">Admin Name</h5>
-                                <h6 className="mx-2 mt-2">Admin</h6>
+                                <h5 className="mt-2 mb-1">{user}</h5>
+                                { userType === "Admin" ? <h6 className="mx-2 mt-2">Admin</h6> : <h6 className="mx-2 mt-2">Employee</h6>}
                             </div>
                             <div className="container d-flex justify-content-center align-items-center mt-5">
+                                    { userType === "Admin" ? 
                                 <ul className="list-unstyled">
                                     <li
                                         className={`mx-2 mt-3 w-100 sidebar-menu p-2 border rounded ${
@@ -59,71 +64,155 @@ function Layout(props) {
                                             <DashboardIcon className="mx-2" />
                                             Dashboard
                                         </Link>
-                                    </li>
-                                    <li
+                                    </li> 
+                                     <li
+                                     className={`mx-2 mt-3 w-100 sidebar-menu p-2 border rounded ${
+                                         activeMenuItem === 'employees'
+                                             ? 'active'
+                                             : ''
+                                     }`}
+                                     onClick={() =>
+                                         handleMenuItemClick('employees')
+                                     }
+                                 >
+                                     <Link
+                                         to="/employees"
+                                         className="nav-link"
+                                     >
+                                         <BadgeIcon className="mx-2" />
+                                         Employees
+                                     </Link>
+                                 </li>
+                                 <li
+                                     className={`mx-2 mt-3 w-100 sidebar-menu p-2 border rounded ${
+                                         activeMenuItem === 'department'
+                                             ? 'active'
+                                             : ''
+                                     }`}
+                                     onClick={() =>
+                                         handleMenuItemClick('department')
+                                     }
+                                 >
+                                     <span>
+                                         <BadgeIcon className="mx-2" />
+                                         Department
+                                     </span>
+                                 </li>
+                                 <li
+                                     className={`mx-2 mt-3 w-100 sidebar-menu p-2 border rounded ${
+                                         activeMenuItem === 'announcement'
+                                             ? 'active'
+                                             : ''
+                                     }`}
+                                     onClick={() =>
+                                         handleMenuItemClick('announcement')
+                                     }
+                                 >
+                                     <span>
+                                         <AnnouncementIcon className="mx-2" />
+                                         Announcement
+                                     </span>
+                                 </li>
+                                 <li
+                                     className={`mx-2 mt-3 w-100 sidebar-menu p-2 border rounded ${
+                                         activeMenuItem === 'settings'
+                                             ? 'active'
+                                             : ''
+                                     }`}
+                                     onClick={() =>
+                                         handleMenuItemClick('settings')
+                                     }
+                                 >
+                                     <span>
+                                         <SettingsIcon className="mx-2" />
+                                         Settings
+                                     </span>
+                                 </li>
+
+                                  </ul>
+                                  : 
+                                  <ul className="list-unstyled">
+                                 <li
                                         className={`mx-2 mt-3 w-100 sidebar-menu p-2 border rounded ${
-                                            activeMenuItem === 'employees'
+                                            activeMenuItem === 'dashboard'
                                                 ? 'active'
                                                 : ''
                                         }`}
                                         onClick={() =>
-                                            handleMenuItemClick('employees')
+                                            handleMenuItemClick('dashboard')
                                         }
                                     >
                                         <Link
-                                            to="/employees"
+                                            to="/employee-dashboard"
                                             className="nav-link"
                                         >
-                                            <BadgeIcon className="mx-2" />
-                                            Employees
+                                            <DashboardIcon className="mx-2" />
+                                            Home
                                         </Link>
                                     </li>
                                     <li
-                                        className={`mx-2 mt-3 w-100 sidebar-menu p-2 border rounded ${
-                                            activeMenuItem === 'department'
-                                                ? 'active'
-                                                : ''
-                                        }`}
-                                        onClick={() =>
-                                            handleMenuItemClick('department')
-                                        }
-                                    >
-                                        <span>
-                                            <BadgeIcon className="mx-2" />
-                                            Department
-                                        </span>
-                                    </li>
-                                    <li
-                                        className={`mx-2 mt-3 w-100 sidebar-menu p-2 border rounded ${
-                                            activeMenuItem === 'announcement'
-                                                ? 'active'
-                                                : ''
-                                        }`}
-                                        onClick={() =>
-                                            handleMenuItemClick('announcement')
-                                        }
-                                    >
-                                        <span>
-                                            <AnnouncementIcon className="mx-2" />
-                                            Announcement
-                                        </span>
-                                    </li>
-                                    <li
-                                        className={`mx-2 mt-3 w-100 sidebar-menu p-2 border rounded ${
-                                            activeMenuItem === 'settings'
-                                                ? 'active'
-                                                : ''
-                                        }`}
-                                        onClick={() =>
-                                            handleMenuItemClick('settings')
-                                        }
-                                    >
-                                        <span>
-                                            <SettingsIcon className="mx-2" />
-                                            Settings
-                                        </span>
-                                    </li>
-                                </ul>
+                                     className={`mx-2 mt-3 w-100 sidebar-menu p-2 border rounded ${
+                                         activeMenuItem === 'announcement'
+                                             ? 'active'
+                                             : ''
+                                     }`}
+                                     onClick={() =>
+                                         handleMenuItemClick('announcement')
+                                     }
+                                 >
+                                     <span>
+                                         <AnnouncementIcon className="mx-2" />
+                                         To do
+                                     </span>
+                                 </li>
+                                 <li
+                                     className={`mx-2 mt-3 w-100 sidebar-menu p-2 border rounded ${
+                                         activeMenuItem === 'announcement'
+                                             ? 'active'
+                                             : ''
+                                     }`}
+                                     onClick={() =>
+                                         handleMenuItemClick('announcement')
+                                     }
+                                 >
+                                     <span>
+                                         <AnnouncementIcon className="mx-2" />
+                                         Salary
+                                     </span>
+                                 </li>
+                                 <li
+                                     className={`mx-2 mt-3 w-100 sidebar-menu p-2 border rounded ${
+                                         activeMenuItem === 'announcement'
+                                             ? 'active'
+                                             : ''
+                                     }`}
+                                     onClick={() =>
+                                         handleMenuItemClick('announcement')
+                                     }
+                                 >
+                                     <span>
+                                         <AnnouncementIcon className="mx-2" />
+                                         Leave
+                                     </span>
+                                 </li>
+                                 <li
+                                     className={`mx-2 mt-3 w-100 sidebar-menu p-2 border rounded ${
+                                         activeMenuItem === 'announcement'
+                                             ? 'active'
+                                             : ''
+                                     }`}
+                                     onClick={() =>
+                                         handleMenuItemClick('announcement')
+                                     }
+                                 >
+                                     <span>
+                                         <AnnouncementIcon className="mx-2" />
+                                         Document
+                                     </span>
+                                 </li>
+                                    
+                                    </ul>}
+                                   
                             </div>
                         </div>
                     </div>
