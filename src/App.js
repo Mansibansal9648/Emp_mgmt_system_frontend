@@ -6,6 +6,7 @@ import Employees from './components/dashboard/admin/employee/employee'
 import { ToastContainer } from 'react-toastify'
 import CreateEmployee from './components/dashboard/admin/createEmployee/createEmployee'
 import EmployeeDashboard from './components/dashboard/employee/employeeDashboard'
+import Todo from './components/dashboard/employee/todo/todo'
 
 function App() {
     return (
@@ -55,6 +56,14 @@ function App() {
                     element={
                         <Layout>
                             <EmployeeDashboard />
+                        </Layout>
+                    }
+                ></Route>
+                <Route
+                    path="/todo"
+                    element={
+                        <Layout>
+                            <Todo/>
                         </Layout>
                     }
                 ></Route>

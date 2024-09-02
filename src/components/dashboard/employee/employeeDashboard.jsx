@@ -32,10 +32,10 @@ function EmployeeDashboard(){
                 </div>
               </div>
               <div className="card-footer d-flex justify-content-between">
-                <a href="#download" className="btn btn-link p-0">
+                <a href="#download" className="btn btn-link p-0 nav-link fw-bold">
                   Download
                 </a>
-                <a href="#show-salary" className="btn btn-link p-0">
+                <a href="#show-salary" className="btn btn-link p-0 nav-link fw-bold">
                   Show Salary
                 </a>
               </div>

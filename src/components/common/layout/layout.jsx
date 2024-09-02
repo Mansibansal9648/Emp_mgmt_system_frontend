@@ -13,20 +13,24 @@ import { useSelector } from 'react-redux'
 
 function Layout(props) {
     const userType = useSelector((state)=>state.userType)
-    const user = useSelector((state)=>state.name)
-    console.log("user", user)
+    const user = useSelector((state)=>state.user)
     const [activeMenuItem, setActiveMenuItem] = useState('dashboard')
+    const [display,setDisplay] = useState("show")
 
     const handleMenuItemClick = (menuItem) => {
         setActiveMenuItem(menuItem)
+    }
+
+    const sidebar_display = () =>{
+
     }
 
     return (
         <>
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-md-2 sidebar border border-1 ">
-                        <div className="inner_container">
+                    <div className="col-md-2 sidebar border border-1 " style={ display === "show" ? {display: "block"} : {display: "none"} }>
+                        <div className="inner_container " >
                             <div className="sidebar-profile text-center">
                                 <div className="mt-3">
                                     <span className="logo mx-4">
@@ -41,7 +45,7 @@ function Layout(props) {
                                         className="img-fluid"
                                     />
                                 </div>
-                                <h5 className="mt-2 mb-1">{user}</h5>
+                                <h5 className="mt-2 mb-1">{user.name}</h5>
                                 { userType === "Admin" ? <h6 className="mx-2 mt-2">Admin</h6> : <h6 className="mx-2 mt-2">Employee</h6>}
                             </div>
                             <div className="container d-flex justify-content-center align-items-center mt-5">
@@ -152,61 +156,62 @@ function Layout(props) {
                                     </li>
                                     <li
                                      className={`mx-2 mt-3 w-100 sidebar-menu p-2 border rounded ${
-                                         activeMenuItem === 'announcement'
+                                         activeMenuItem === 'to_do'
                                              ? 'active'
                                              : ''
                                      }`}
                                      onClick={() =>
-                                         handleMenuItemClick('announcement')
+                                         handleMenuItemClick('to_do')
                                      }
                                  >
-                                     <span>
-                                         <AnnouncementIcon className="mx-2" />
+                                     <Link to="/todo"
+                                            className="nav-link">
+                                         <i className="fa-regular fa-clipboard mx-2"></i>
                                          To do
-                                     </span>
+                                     </Link>
                                  </li>
                                  <li
                                      className={`mx-2 mt-3 w-100 sidebar-menu p-2 border rounded ${
-                                         activeMenuItem === 'announcement'
+                                         activeMenuItem === 'salary'
                                              ? 'active'
                                              : ''
                                      }`}
                                      onClick={() =>
-                                         handleMenuItemClick('announcement')
+                                         handleMenuItemClick('salary')
                                      }
                                  >
                                      <span>
-                                         <AnnouncementIcon className="mx-2" />
+                                     <i className="fa-solid fa-wallet mx-2"></i>
                                          Salary
                                      </span>
                                  </li>
                                  <li
                                      className={`mx-2 mt-3 w-100 sidebar-menu p-2 border rounded ${
-                                         activeMenuItem === 'announcement'
+                                         activeMenuItem === 'leave'
                                              ? 'active'
                                              : ''
                                      }`}
                                      onClick={() =>
-                                         handleMenuItemClick('announcement')
+                                         handleMenuItemClick('leave')
                                      }
                                  >
                                      <span>
-                                         <AnnouncementIcon className="mx-2" />
+                                     <i class="fa-solid fa-door-open mx-2"></i>
                                          Leave
                                      </span>
                                  </li>
                                  <li
                                      className={`mx-2 mt-3 w-100 sidebar-menu p-2 border rounded ${
-                                         activeMenuItem === 'announcement'
+                                         activeMenuItem === 'document'
                                              ? 'active'
                                              : ''
                                      }`}
                                      onClick={() =>
-                                         handleMenuItemClick('announcement')
+                                         handleMenuItemClick('document')
                                      }
                                  >
                                      <span>
-                                         <AnnouncementIcon className="mx-2" />
+                                     <i className="fa-regular fa-file mx-2"></i>
                                          Document
                                      </span>
                                  </li>
@@ -219,9 +224,17 @@ function Layout(props) {
 
                     <div className="col-md-10 p-0 rest_part">
                         <div className="container-fluid navbar d-flex justify-content-space-between border border-1">
-                            <button className="rounded-circle">
+                            <span className="rounded-circle" onClick={()=>{
+                                if(display === "show"){
+
+                                    setDisplay("hide")
+                                }
+                                else{
+                                    setDisplay("show")
+                                }
+                            }}>
                                 <MenuOpenIcon />
-                            </button>
+                            </span>
                             <div className="searchbox position-relative d-flex align-items-center">
                                 <SearchIcon className="mr-2" />
                                 <input
