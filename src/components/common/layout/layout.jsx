@@ -47,7 +47,7 @@ function Layout(props) {
                                 { user.userType === "Admin" ? <h6 className="mx-2 mt-2">Admin</h6> : <h6 className="mx-2 mt-2">Employee</h6>}
                             </div>
                             <div className="container d-flex justify-content-center align-items-center mt-5">
-                                    { userType === "Admin" ? 
+                                    { user.userType === "Admin" ? 
                                 <ul className="list-unstyled">
                                     <li
                                         className={`mx-2 mt-3 w-100 sidebar-menu p-2 border rounded ${
