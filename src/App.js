@@ -24,8 +24,8 @@ function App() {
                 theme="colored"
             />
             <Routes>
-                <Route path="/" element={<PrivateRoute><Signin /></PrivateRoute>}></Route>
-                <Route path="/signin" element={<PrivateRoute><Signin /></PrivateRoute>}></Route>
+                <Route path="/" element={<Signin />}></Route>
+                <Route path="/signin" element={<Signin />}></Route>
                 <Route
                     path="/admin-dashboard"
                     element={
@@ -39,18 +39,22 @@ function App() {
                 <Route
                     path="/employees"
                     element={
+                        <PrivateRoute>
                         <Layout>
                             <Employees />
                         </Layout>
+                        </PrivateRoute>
                     }
                 ></Route>
 
                 <Route
-                    path="/employees/create-employee"
+                    path="/create-employee"
                     element={
+                        <PrivateRoute>
                         <Layout>
                             <CreateEmployee />
                         </Layout>
+                        </PrivateRoute>
                     }
                 ></Route>
                 <Route
