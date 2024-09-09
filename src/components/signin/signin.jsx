@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './signin.css'
 import { useFormik } from 'formik'
 import { loginSchema } from '../../schemas/loginSchema'
@@ -8,17 +8,26 @@ import { toast } from 'react-toastify'
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
 import { loginAdmin, loginUser } from '../../api/loginApi'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch,useSelector } from 'react-redux'
 import { login } from '../../redux/slices/userSlice'
 
 function Signin() {
     const dispatch=useDispatch()
+    const user = useSelector((state) => state.user)
+    const navigate=useNavigate()
+
     const [value, setValue] = useState(1)
     // const [activeValue, setActiveValue] = useState(3);
+
+    useEffect(()=>{
+        if(user.isLogin){
+            navigate(user.userType === 'Admin'? '/admin-dashboard' : '/employee-dashboard')
+        }
+    },[])
+    
     const handleChange = (val) => {
         setValue(val)
     }
-    const navigate = useNavigate()
     const initialState = {
         email: '',
         password: '',

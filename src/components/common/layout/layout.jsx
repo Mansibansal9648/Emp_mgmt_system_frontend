@@ -12,7 +12,6 @@ import profile_pic from '../../../assets/images/profile.png'
 import { useSelector } from 'react-redux'
 
 function Layout(props) {
-    const userType = useSelector((state)=>state.user)
     const user = useSelector((state)=>state.user)
     const [activeMenuItem, setActiveMenuItem] = useState('dashboard')
     const [display,setDisplay] = useState("show")

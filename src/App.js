@@ -7,6 +7,7 @@ import { ToastContainer } from 'react-toastify'
 import CreateEmployee from './components/dashboard/admin/createEmployee/createEmployee'
 import EmployeeDashboard from './components/dashboard/employee/employeeDashboard'
 import Todo from './components/dashboard/employee/todo/todo'
+import PrivateRoute from './components/common/privateRoutes/privateRoute'
 
 function App() {
     return (
@@ -29,34 +30,42 @@ function App() {
                 <Route
                     path="/admin-dashboard"
                     element={
+                        <PrivateRoute>
                         <Layout>
                             <AdminDashboard />
                         </Layout>
+                        </PrivateRoute>
                     }
                 ></Route>
                 <Route
                     path="/employees"
                     element={
+                        <PrivateRoute>
                         <Layout>
                             <Employees />
                         </Layout>
+                        </PrivateRoute>
                     }
                 ></Route>
 
                 <Route
-                    path="/employees/create-employee"
+                    path="/create-employee"
                     element={
+                        <PrivateRoute>
                         <Layout>
                             <CreateEmployee />
                         </Layout>
+                        </PrivateRoute>
                     }
                 ></Route>
                 <Route
                     path="/employee-dashboard"
                     element={
+                        <PrivateRoute>
                         <Layout>
                             <EmployeeDashboard />
                         </Layout>
+                        </PrivateRoute>
                     }
                 ></Route>
                 <Route
@@ -67,6 +76,7 @@ function App() {
                         </Layout>
                     }
                 ></Route>
+               
             </Routes>
         </BrowserRouter>
     )
